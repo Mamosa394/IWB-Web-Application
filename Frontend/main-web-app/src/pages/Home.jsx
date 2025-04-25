@@ -1,76 +1,71 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import "../styles/Home-page.css";
+import "../styles/home.css";
+import { useNavigate } from "react-router-dom";
+import "/images/MacBookPro.jpg";
 
-const Home = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        // Corrected the API URL to include HTTPS
-        const response = await axios.get("https://server-2-43kp.onrender.com/api/items");
-        setItems(response.data);
-      } catch (error) {
-        console.error("Error fetching items:", error.response?.data || error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchItems();
-  }, []);
-
-  const handleOrder = (item) => {
-    // Construct the URL to redirect to the hosted order management system
-    const orderUrl = `https://restfulapi-order-management-system.netlify.app/create-order?itemName=${encodeURIComponent(item.name)}&price=${item.price}`;
-
-    // Redirect to the order management site
-    window.location.href = orderUrl;
-  };
+const HomePage = () => {
+  const navigate = useNavigate();
 
   return (
-    <div>
-      <Header />
-      <section className="home-banner">
-        <img src="/images/img.jpg" alt="Logo" className="Logo" />
-        <h1>Get Your Best Tech Accessories With Us!</h1>
+    <div className="home-container">
+      <header className="header">
+        <h1 className="logo">IWB Technologies</h1>
+        <nav className="nav-links">
+          <a href="#">Home</a>
+          <a href="#">Inventory</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <button className="login-btn" onClick={() => navigate("/login")}>
+            Log in
+          </button>
+        </nav>
+      </header>
+
+      <section className="hero-section">
+        {/* Placeholder for hero image */}
+        <div className="hero-text">
+          <h2>Laptop Refurbishment</h2>
+          <p>High-quality refurbished laptops for your needs</p>
+          <button className="shop-btn">Shop Now</button>
+        </div>
+       
+        <div className="hero-img">
+        <img src={"/images/MacBookPro.jpg"} alt={"laptop"} style={{ maxWidth: " 480px;", maxHeight: "380px", borderRadius: "12px" }} />
+          
+        </div>
       </section>
-      <section className="home-products">
-        <h2>Available Items</h2>
-        {loading ? (
-          <p>Loading products...</p>
-        ) : items.length === 0 ? (
-          <p>No products available at the moment.</p>
-        ) : (
-          <div className="home-products__list">
-            {items.map((item) => (
-              <div key={item._id} className="home-products__card">
-                <h3>{item.name}</h3>
-                <img
-                  src={`/images/${item.name}.jpg`}
-                  alt={item.name}
-                  className="home-products__image"
-                />
-                <p>Price: M {item.price.toLocaleString()}</p>
-                <p>Quantity Available: {item.quantity}</p>
-                <button
-                  className="home-products__button"
-                  onClick={() => handleOrder(item)}
-                >
-                  Order
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
+
+      <section className="stats-section">
+        <div className="stat-box">
+          <h3>250+</h3>
+          <p>Laptops in Stock</p>
+        </div>
+        <div className="stat-box">
+          <h3>30-Day</h3>
+          <p>Warranty</p>
+        </div>
+        <div className="stat-box">
+          <h3>1000+</h3>
+          <p>Satisfied Customers</p>
+        </div>
       </section>
-      <Footer />
+
+      <section className="grid-section">
+        <div className="grid-card">
+          {/* Placeholder for Available Inventory Image */}
+          <div className="image-placeholder">[Inventory Image]</div>
+          <h4>Available Inventory</h4>
+          <p>Browse our selection of refurbished laptops</p>
+        </div>
+
+        <div className="grid-card">
+          {/* Placeholder for Recent Articles Image */}
+          <div className="image-placeholder">[Articles Image]</div>
+          <h4>Recent Articles</h4>
+          <p>Read our latest articles and news</p>
+        </div>
+      </section>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;
