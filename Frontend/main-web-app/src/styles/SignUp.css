@@ -232,10 +232,9 @@ form input::placeholder {
 .logo {
   position: absolute;
   top: 25px;
-  left: 415px;
+  left: 400px;
   height: 50px;
   width: 50px;
-  border-radius: 50%;
 }
 .google-icon:hover {
   color: #db4437; /* Google red color */
@@ -297,7 +296,15 @@ form input::placeholder {
   animation-delay: 0.3s;
   animation-fill-mode: both;
 }
-
+.login-link {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  padding: 0.15rem 0.6rem;
+  box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.14);
+  color: var(--dark-bg);
+  font-weight: bold;
+  text-align: center;
+}
 /* Input Wrapper - Ensuring padding doesn't overlap with the icon */
 .input-wrapper {
   position: relative;
