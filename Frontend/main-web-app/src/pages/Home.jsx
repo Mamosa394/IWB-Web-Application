@@ -27,10 +27,17 @@ const HomePage = () => {
           <p>High-quality refurbished laptops for your needs</p>
           <button className="shop-btn">Shop Now</button>
         </div>
-       
+
         <div className="hero-img">
-        <img src={"/images/MacBookPro.jpg"} alt={"laptop"} style={{ maxWidth: " 480px;", maxHeight: "380px", borderRadius: "12px" }} />
-          
+          <img
+            src={"/images/MacBookPro.png"}
+            alt={"laptop"}
+            style={{
+              maxWidth: " 480px;",
+              maxHeight: "380px",
+              borderRadius: "12px",
+            }}
+          />
         </div>
       </section>
 
