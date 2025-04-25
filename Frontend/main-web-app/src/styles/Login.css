@@ -1,0 +1,284 @@
+/* Base container styling */
+
+.signup-ui-container {
+    display: flex;
+    height: 100vw;
+    width: 100vw;
+    background-color: #1c1e26;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: -4%;
+}
+
+
+/* Wrapper Containers for clarity */
+
+.left-panel-container,
+.right-panel-container {
+    flex: 1;
+    display: flex;
+}
+
+
+/* Left Panel with Robot */
+
+.left-panel {
+    flex: 1;
+    background-color: hsl(233, 60%, 29%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.robot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0rem;
+    overflow: visible;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.robot-img {
+    width: 100%;
+    height: auto;
+}
+
+.knee-caption {
+    margin-top: 1rem;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+    margin-left: -35%;
+}
+
+
+/* Right Panel with Form */
+
+.right-panel {
+    flex: 1;
+    background-color: #191b28;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    max-height: 200%;
+}
+
+.signup-form-box {
+    width: 100%;
+    max-width: 500px;
+    background-color: #191b28;
+    padding: 2rem;
+    border-radius: 10px;
+    color: white;
+    position: relative;
+}
+
+.signup-form-box h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffb933;
+    margin-bottom: 10px;
+}
+
+.login-text {
+    color: #cfcfcf;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-text a {
+    color: #ffb933;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* Form Inputs */
+
+.input-wrapper {
+    margin-bottom: -2rem;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 3rem;
+    background-color: #2b2d3c;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1.2rem;
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: #aaa;
+    padding: 0.5rem;
+}
+
+
+/* Submit Button */
+
+.signup-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 4rem;
+    background-color: #ffb933;
+    border: none;
+    border-radius: 6px;
+    color: #191b28;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #e6a91f;
+}
+
+
+/* Error and Success Messages */
+
+.error {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.success-message {
+    color: #4caf50;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+
+/* Classic Login Section */
+
+.classic-login {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.classic-login p {
+    color: hsl(59, 66%, 49%);
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.icon-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.login-icon {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(7, 6, 6, 0.3);
+}
+
+.login-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(255, 185, 51, 0.6);
+}
+
+
+/* Responsive Adjustments */
+
+@media screen and (max-width: 768px) {
+    .signup-ui-container {
+        flex-direction: column;
+    }
+    .left-panel,
+    .right-panel {
+        flex: none;
+        width: 100%;
+        height: auto;
+    }
+    .signup-form-box {
+        max-width: 90%;
+    }
+}
+
+.glow-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 3px;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    animation: snakeBorder 6s ease-in-out infinite;
+    z-index: 10;
+    border-radius: 20px;
+}
+
+
+/* Snake movement along the box edges */
+
+@keyframes snakeBorder {
+    0% {
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        border-radius: 20px;
+    }
+    25% {
+        width: 100%;
+        height: 3px;
+        top: 0;
+        left: 0;
+        border-radius: 20px;
+    }
+    26% {
+        top: 0;
+        left: 100%;
+        width: 3px;
+        height: 0%;
+        border-radius: 20px;
+    }
+    50% {
+        height: 100%;
+        width: 3px;
+        top: 0;
+        left: 100%;
+        border-radius: 20px;
+    }
+    51% {
+        top: 100%;
+        left: 100%;
+        width: 0%;
+        height: 3px;
+        border-radius: 20px;
+    }
+    75% {
+        width: 100%;
+        height: 3px;
+        top: 100%;
+        left: 0;
+        border-radius: 20px;
+    }
+    76% {
+        top: 100%;
+        left: 0;
+        width: 3px;
+        height: 0%;
+        border-radius: 20px;
+    }
+    100% {
+        height: 100%;
+        width: 3px;
+        top: 0;
+        left: 0;
+        border-radius: 20px;
+    }
+}
