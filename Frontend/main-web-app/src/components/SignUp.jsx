@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaUser, FaEnvelope, FaLock, FaGoogle } from "react-icons/fa"; // Import icons
+import { FaUser, FaEnvelope, FaLock, FaGoogle } from "react-icons/fa";
 import "../styles/SignUp.css";
-import robotImage from "/images/ROBOT.png"; // Make sure the image path is correct
+import robotImage from "/images/ROBOT.png";
+import logo from "/images/logo.jpg";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +17,7 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -50,25 +48,28 @@ const SignUp = () => {
     <div className="signup-ui-container">
       <div className="left-panel">
         <div className="robot-wrapper">
-          <img
-            src={robotImage}
-            alt="Robot with Accessories"
-            className="robot-img"
-          />
-          <div className="knee-caption">
-            Capturing Innovation, <br />
-            Empowering Intelligence
-          </div>
+          <img src={robotImage} alt="Robot" className="robot-img" />
+          <div className="knee-caption">IWB Technologies</div>
         </div>
       </div>
 
       <div className="right-panel">
         <div className="signup-form-box">
+          <div class="glow-border"></div>
+
           <h2>Create an account</h2>
+
+          <div className="logo-wrapper">
+            <img src={logo} alt="logo" className="logo" />
+          </div>
+
           <p className="login-text">
             Already have an account?{" "}
-            <span onClick={() => navigate("/login")}>Login</span>
+            <span className="login-link" onClick={() => navigate("/login")}>
+              Login
+            </span>
           </p>
+
           <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
               <FaUser className="input-icon" />
@@ -78,9 +79,9 @@ const SignUp = () => {
                 placeholder="Username"
                 value={formData.username}
                 onChange={handleChange}
-                required
               />
             </div>
+
             <div className="input-wrapper">
               <FaEnvelope className="input-icon" />
               <input
@@ -89,9 +90,9 @@ const SignUp = () => {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
-                required
               />
             </div>
+
             <div className="input-wrapper">
               <FaLock className="input-icon" />
               <input
@@ -100,12 +101,11 @@ const SignUp = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                required
               />
             </div>
 
             <div className="terms">
-              <input type="checkbox" required />
+              <input type="checkbox" required className="tick" />
               <label>I agree to the Terms & Conditions</label>
             </div>
 
@@ -117,6 +117,7 @@ const SignUp = () => {
           </form>
 
           <div className="or-divider">OR</div>
+
           <div className="social-login">
             <button className="google-login">
               <FaGoogle className="google-icon" /> Google

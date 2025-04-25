@@ -1,0 +1,207 @@
+:root {
+    --primary-color: #fbba3f;
+    --hover-color: #ffd873;
+    --dark-bg: #1e1e2f;
+    --panel-dark: #2d2d3d;
+    --form-bg: #29293d;
+    --input-bg: #3a3a4d;
+    --white: #ffffff;
+    --light-gray: #ccc;
+    --lighter-gray: #cedbe9;
+    --error-red: #ff6b6b;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  body {
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-bg);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  
+  .home-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+    flex-grow: 1; /* Allow the content to grow and push the footer if needed */
+  }
+  
+  .header {
+    
+    margin-bottom: 2rem;
+  }
+  
+  .logo {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-right: 2;
+    
+  }
+  
+  .nav-links a {
+    margin: 0 1rem;
+    margin-left: 30px;
+    padding-left: 100px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .login-btn {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    color: var(--dark-bg);
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .login-btn:hover {
+    background-color: var(--lighter-gray);
+  }
+  
+  .first-section {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--panel-dark);
+    padding: 2rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+  
+  .open-text h2 {
+    font-size: 1.8rem;
+    color: var(--white);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 100px;
+    margin-top: 130px;
+  }
+  
+  .open-text p {
+    font-size: 1.1rem;
+    color: var(--lighter-gray);
+    margin-left: 120px;
+    margin-top: 2px;
+  }
+  
+  
+  .shop-btn {
+    margin-left: 250px;
+    margin-top: 10px;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+    font-size:medium;
+    color: var(--dark-bg);
+    background-color: rgb(62, 158, 62);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .shop-btn:hover {
+    background-color: var(--lighter-gray);
+  }
+  
+  .hero-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-placeholder {
+    width: 280px;
+    height: 180px;
+    background-color: var(--input-bg);
+    color: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1rem;
+  }
+  
+  .stats-section {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--panel-dark);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+
+  }
+  
+  .stat-box h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+  }
+  
+  .stat-box p {
+    color: var(--lighter-gray);
+  }
+  
+  .grid-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  .grid-card {
+    background-color: var(--form-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    text-align: center;
+  }
+  
+  .grid-card h4 {
+    margin-top: 1rem;
+    color: var(--white);
+  }
+  
+  .grid-card p {
+    color: var(--light-gray);
+    margin-top: 0.5rem;
+  }
+  
+  .first-img img{
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.035); /* subtle tint */
+    border-radius: 12px;
+    padding: 0.5rem;
+    opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 1.2s ease-out forwards;
+}
+
+  .first-img img {
+    box-shadow: 
+      0 3px 8px rgba(72, 67, 67, 0.4), 
+      0 5px 16px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 12px;
+  }
+  
+  .first-img img:hover {
+    box-shadow: 
+      0 6px 18px rgba(0, 0, 0, 0.5),
+      0 10px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

@@ -1,4 +1,4 @@
-/* ===========================
+/* ==========================
    Root variables and reset
 ============================= */
 :root {
@@ -13,13 +13,7 @@
   --lighter-gray: #cedbe9;
   --error-red: #ff6b6b;
   --shadow-color: rgba(0, 0, 0, 0.4);
-}
-
-/* Reset default margin and padding */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  --max-width: 100%; /* Max width of the form */
 }
 
 /* Base setup */
@@ -28,163 +22,99 @@ html {
   font-family: "Segoe UI", sans-serif;
   background-color: var(--dark-bg);
   color: var(--white);
-  overflow-x: hidden;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   width: 100%;
   height: 100%;
-  overflow-y: hidden; /* Prevent vertical scrolling */
+  margin: 0;
 }
 
-/* Container filling full screen */
+/* Sign up container */
 .signup-ui-container {
   display: flex;
-  height: 100%;
-  width: 100vw;
-  overflow: hidden; /* Prevent scrolling */
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-/* =======================
-     Left Panel - Robot Side
-  ========================== */
+/* Left Panel */
 .left-panel {
   flex: 1;
   background-color: var(--panel-dark);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Align content to the bottom */
+  justify-content: flex-end;
   align-items: center;
   text-align: center;
-  overflow: hidden;
-  padding: 0;
 }
 
 .robot-wrapper {
   background-color: var(--form-bg);
 }
+
 .robot-img {
   width: 110%;
-  height: 77%;
+  height: 80%;
   object-fit: cover;
-  border-radius: 0;
-  box-shadow: none;
-  margin-left: -80px;
+  margin-left: -60px;
 }
 
-/* Text Overlay Styling */
-.text-overlay h1 {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
-}
-
-.text-overlay p {
-  color: var(--lighter-gray);
-  font-size: 1rem;
-  max-width: 500px;
-  margin-bottom: 1.5rem;
-}
-
-.back-to-site {
-  padding: 0.6rem 1.4rem;
-  background-color: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease-in-out;
-}
-
-.back-to-site:hover {
-  background-color: var(--primary-color);
-  color: var(--dark-bg);
-}
-
-/* =======================
-     Right Panel - Signup Form
-  ========================== */
+/* Right Panel */
 .right-panel {
   flex: 1;
   background-color: #1a1a26;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
-  margin-top: -90px;
-  margin-left: -5.5rem;
-  overflow: hidden; /* Prevent scroll */
+  padding: 2rem;
+  position: relative;
 }
 
 .signup-form-box {
   width: 100%;
-  max-width: 500px;
+  max-width: 500px; /* Limit the max width */
   background-color: var(--form-bg);
-  padding: 4rem 2.5rem;
+  padding: 3rem 1.5rem;
   border-radius: 20px;
   box-shadow: 0 0 20px var(--shadow-color);
   text-align: center;
+  height: auto;
+  overflow: hidden;
+  height: 80vh;
+  position: relative;
 }
+
+/* Heading */
 .signup-form-box h2 {
   color: var(--primary-color);
   margin-bottom: 1rem;
   font-size: 1.8rem;
+  margin-top: -20px;
 }
 
-.login-text {
-  font-size: 0.95rem;
-  color: #bbb;
-  margin-bottom: 1.5rem;
-}
-
-.login-text span {
-  color: var(--primary-color);
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.login-text span:hover {
-  color: var(--hover-color);
-}
-
-/* =======================
-     Form Fields
-  ========================== */
+/* Input Fields */
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 form input {
   width: 100%;
-  max-width: 300px;
-  margin-top: 20px;
-  padding: 0.8rem 1rem;
+  padding: 0.5rem 1rem; /* Reduced padding */
   margin-bottom: 1rem;
+  padding-right: 60px;
   border: none;
   border-radius: 8px;
   background-color: var(--input-bg);
   color: var(--white);
   font-size: 0.95rem;
+  height: 45px; /* Reduced height to fit the input neatly */
 }
 
 form input::placeholder {
-  color: var(--light-gray);
-}
-
-/* Terms Checkbox */
-.terms {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.terms input {
-  margin-right: 0.5rem;
-}
-
-.terms label {
-  font-size: 0.85rem;
   color: var(--light-gray);
 }
 
@@ -193,6 +123,26 @@ form input::placeholder {
   color: var(--error-red);
   font-size: 0.9rem;
   margin-bottom: 1rem;
+}
+
+/* Terms Checkbox */
+.terms {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.terms input {
+  margin-right: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+.tick {
+  padding: 5px;
+}
+.terms label {
+  font-size: 0.85rem;
+  color: var(--light-gray);
 }
 
 /* Signup Button */
@@ -209,34 +159,8 @@ form input::placeholder {
   transition: background-color 0.3s;
 }
 
-.knee-caption {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  bottom: 25%;
-  left: 25%;
-  transform: translateX(-50%);
-  color: var(--white);
-  font-size: 1rem;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  backdrop-filter: blur(2px);
-  box-shadow: 0 0 10px var(--shadow-color);
-  font-weight: 500;
-}
-
 .signup-btn:hover {
   background-color: var(--hover-color);
-}
-
-/* OR Divider */
-.or-divider {
-  margin: 1.5rem 0;
-  font-size: 0.9rem;
-  color: #777;
 }
 
 /* Social Login Buttons */
@@ -261,9 +185,7 @@ form input::placeholder {
   background-color: #444;
 }
 
-/* =======================
-     Responsive Design
-  ========================== */
+/* Responsive Design */
 @media (max-width: 900px) {
   .signup-ui-container {
     flex-direction: column;
@@ -273,69 +195,301 @@ form input::placeholder {
   .left-panel,
   .right-panel {
     width: 100%;
-    flex: none;
-    padding: 2rem 1rem;
+    padding: 1rem;
   }
 
   .robot-img {
-    max-height: 300px; /* Slightly increased max-height */
-    margin-bottom: 1.5rem; /* Reduced margin */
+    max-height: 220px;
+    margin-bottom: 1.5rem;
   }
 
   .signup-form-box {
     padding: 2rem;
   }
 }
-.input-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-top: 20px;
+/* ==============================
+     Knee Caption (Text Overlay)
+============================== */
+.knee-caption {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+  line-height: 1.3;
+  font-family: "Segoe UI", sans-serif;
 }
 
-.input-wrapper .input-icon {
+/* ==============================
+     Google Icon
+============================== */
+.google-icon {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-right: 0.5rem;
+  transition: color 0.3s ease-in-out;
+}
+.logo {
   position: absolute;
-  left: 10px;
-  color: var(--light-gray);
+  top: 25px;
+  left: 400px;
+  height: 50px;
+  width: 50px;
+}
+.google-icon:hover {
+  color: #db4437; /* Google red color */
+}
+
+/* ========.logo
+======================
+     Social Login (Buttons Container)
+============================== */
+.social-login {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.social-login button {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: var(--panel-dark);
+  color: var(--white);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.social-login button:hover {
+  background-color: #444;
+  color: var(--primary-color);
+}
+
+/* Google Social Button */
+.social-login .google-login {
+  background-color: #db4437; /* Google red */
+  color: #fff;
+}
+
+.social-login .google-login:hover {
+  background-color: #c1351d; /* Darker red on hover */
+}
+
+/* ==============================
+     Input Icon (Inside Input Fields)
+============================== */
+.input-icon {
   font-size: 1.2rem;
+  color: var(--primary-color);
+  position: absolute;
+  left: 16px;
+  top: 35%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  margin-right: 10px;
+  margin-left: -10px;
+  opacity: 1; /* Ensure icon stays visible */
+  animation: fadeInUp 0.8s ease-out;
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+}
+.login-link {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  padding: 0.15rem 0.6rem;
+  box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.14);
+  color: var(--dark-bg);
+  font-weight: bold;
+  text-align: center;
+}
+/* Input Wrapper - Ensuring padding doesn't overlap with the icon */
+.input-wrapper {
+  position: relative;
 }
 
 .input-wrapper input {
   width: 100%;
-  max-width: 300px;
-  padding: 0.8rem 1rem 0.8rem 2.5rem; /* Adjust padding to leave space for the icon */
-  margin-bottom: 1rem;
-  border: none;
+  padding: 0.5rem 1rem;
+  padding-left: 2.4rem;
   border-radius: 8px;
+  border: none;
   background-color: var(--input-bg);
   color: var(--white);
-  font-size: 0.95rem;
+  font-size: 1rem;
+  height: 45px;
+  margin-right: 50px;
+  margin-left: -5px;
 }
 
 .input-wrapper input::placeholder {
   color: var(--light-gray);
 }
+.knee-caption {
+  position: absolute;
+  bottom: 10%;
+  left: 0%;
+  font-size: 1.8rem;
+  color: white;
+  background: rgba(29, 29, 45, 0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-shadow: 0 2px 6px var(--shadow-color);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  box-shadow: 2px 2px 3px 2px rgba(255, 255, 255, 0.11);
+  font-family: "Segoe UI", sans-serif;
+  max-width: 320px;
+  text-align: left;
+}
+/* ================================
+     Animations for Sliding Effect
+================================ */
 
-/* Style for Google login button */
-.google-login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #db4437; /* Google red color */
-  border: none;
-  border-radius: 8px;
-  padding: 0.7rem;
-  color: var(--white);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
+/* Keyframes */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.google-login:hover {
-  background-color: #c1351d; /* Darker red on hover */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-.google-login .google-icon {
-  margin-right: 0.5rem;
-  font-size: 1.2rem;
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Apply Animations */
+.left-panel {
+  animation: slideInLeft 1s ease-out;
+}
+
+.right-panel {
+  animation: slideInRight 1s ease-out;
+}
+
+.signup-form-box form input,
+.signup-btn,
+.terms,
+.social-login {
+  animation: fadeInUp 0.8s ease-out;
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+}
+
+/* Staggering the form inputs slightly for a cooler effect */
+.signup-form-box form input:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.signup-form-box form input:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.signup-form-box form input:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.signup-btn {
+  animation-delay: 0.6s;
+}
+.terms {
+  animation-delay: 0.7s;
+}
+.social-login {
+  animation-delay: 0.8s;
+}
+.glow-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  background: var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+  animation: snakeBorder 6s ease-in-out infinite;
+  z-index: 10;
+  border-radius: 20px;
+}
+
+/* Snake movement along the box edges */
+@keyframes snakeBorder {
+  0% {
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    border-radius: 20px;
+  }
+  25% {
+    width: 100%;
+    height: 3px;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+  }
+  26% {
+    top: 0;
+    left: 100%;
+    width: 3px;
+    height: 0%;
+    border-radius: 20px;
+  }
+  50% {
+    height: 100%;
+    width: 3px;
+    top: 0;
+    left: 100%;
+    border-radius: 20px;
+  }
+  51% {
+    top: 100%;
+    left: 100%;
+    width: 0%;
+    height: 3px;
+    border-radius: 20px;
+  }
+  75% {
+    width: 100%;
+    height: 3px;
+    top: 100%;
+    left: 0;
+    border-radius: 20px;
+  }
+  76% {
+    top: 100%;
+    left: 0;
+    width: 3px;
+    height: 0%;
+    border-radius: 20px;
+  }
+  100% {
+    height: 100%;
+    width: 3px;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+  }
 }
