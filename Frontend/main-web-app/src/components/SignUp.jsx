@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaUser, FaEnvelope, FaLock, FaGoogle } from "react-icons/fa";
 import "../styles/SignUp.css";
 import robotImage from "/images/ROBOT.png";
-import logo from "/images/Logo.png"; // <-- no destructuring here
+import logo from "/images/logo.jpg";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
