@@ -28,7 +28,7 @@ const HomePage = () => {
           <button className="shop-btn">Shop Now</button>
         </div>
        
-        <div className="first-img">
+        <div className="hero-img">
         <img src={"/images/MacBookPro.jpg"} alt={"laptop"} style={{ maxWidth: " 480px;", maxHeight: "380px", borderRadius: "12px" }} />
           
         </div>
