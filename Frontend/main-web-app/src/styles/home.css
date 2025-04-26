@@ -247,7 +247,7 @@ body {
   width: 70px;
   height: 70px;
   object-fit: cover;
-  margin-bottom: ;
+  
 }
 .logo-text {
   font-size: 1.6rem;
@@ -255,7 +255,7 @@ body {
   color: var(--primary-color);
   margin: 0;
   white-space: nowrap;
-  animation: moveLogo 2s infinite ease-in-out; /* Optional: Animate the text */
+  animation: moveLogo 2s infinite ease-in-out; 
 }
 /* Adding animation to the logo */
 .logo-image {

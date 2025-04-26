@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/home.css";
 
@@ -12,7 +11,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
-        <img src="/images/logo.png" alt="IWB Logo" className="logo-image" />
+        <img src="/images/Logo.png" alt="IWB Logo" className="logo-image" />
         <h1 className="logo-text">IWB Technologies</h1>
       </div>
 

@@ -1,5 +1,5 @@
 import "../styles/home.css";
-import Header from "../components/Header"; // Adjust path as needed
+import Header from "../components/Header";
 
 const HomePage = () => {
   return (
