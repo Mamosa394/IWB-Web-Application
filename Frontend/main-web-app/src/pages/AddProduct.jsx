@@ -233,13 +233,3 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-console.log("Name:", name);
-console.log("Type:", type);
-console.log("CPU:", cpu);
-console.log("RAM:", ram);
-console.log("Storage:", storage);
-console.log("GPU:", gpu);
-console.log("Price:", price);
-console.log("Status:", status);
-console.log("Tags:", tags);
-console.log("Image:", image);

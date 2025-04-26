@@ -1,19 +1,10 @@
 import "../styles/home.css";
-import Header from "../components/Header";
-
-
-import "/images/MacBookPro.png";
-import "/images/INVENTORY.png";
-
+import Header from "../components/Header"; // Adjust path as needed
 
 const HomePage = () => {
   return (
     <div className="home-container">
-
       <Header />
-
-      <Header /> 
-
 
       <section className="first-section">
         <div className="open-text">
@@ -23,7 +14,6 @@ const HomePage = () => {
         </div>
 
         <div className="first-img">
-
           <img
             src={"/images/MacBookPro.png"}
             alt="laptop"
@@ -32,12 +22,6 @@ const HomePage = () => {
               maxHeight: "380px",
               borderRadius: "12px",
             }}
-
-          <img 
-            src={"/images/MacBookPro.png"} 
-            alt={"laptop"} 
-            style={{ maxWidth: "480px", maxHeight: "380px", borderRadius: "12px" }} 
-
           />
         </div>
       </section>
@@ -45,7 +29,6 @@ const HomePage = () => {
       <section className="grid-section">
         <div className="grid-card">
           <div className="image-placeholder">
-
             <img
               src={"/images/INVENTORY.png"}
               alt="inventory"
@@ -55,18 +38,9 @@ const HomePage = () => {
                 borderRadius: "12px",
               }}
             />
-
-            <div className="second-image">
-              <img 
-                src={"/images/INVENTORY.png"} 
-                alt={"inventory"} 
-                style={{ maxWidth: "200px", maxHeight: "150px", borderRadius: "12px" }} 
-              />
-            </div>
-            <h4>Available Inventory</h4>
-            <p>Browse our selection of refurbished laptops</p>
-
           </div>
+          <h4>Available Inventory</h4>
+          <p>Browse our selection of refurbished laptops</p>
         </div>
 
         <div className="grid-card">

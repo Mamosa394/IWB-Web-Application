@@ -1,80 +1,32 @@
 import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../styles/inventory.css";
 
-const sampleInventory = [
-  {
-    id: 1,
-    name: "Dell OptiPlex 790",
-    type: "Desktop",
-    specs: {
-      cpu: "Intel i5",
-      ram: "8GB",
-      storage: "500GB HDD",
-      gpu: "Intel HD Graphics",
-    },
-    price: 1800,
-    image: "/images/Inventory/Dell Optiplex 780.jpg",
-    status: "Available",
-    tags: ["Office", "Compact", "Refurbished"],
-  },
-  {
-    id: 2,
-    name: "HP ProBook 450 G5",
-    type: "Laptop",
-    specs: {
-      cpu: "Intel i7",
-      ram: "16GB",
-      storage: "512GB SSD",
-      gpu: "NVIDIA MX130",
-    },
-    price: 4500,
-    image: "/images/Inventory/HP ProBook 450 G5.jpg",
-    status: "Available",
-    tags: ["Business", "Portable", "Refurbished"],
-  },
-  {
-    id: 3,
-    name: "Lenovo ThinkServer TS140",
-    type: "Server",
-    specs: {
-      cpu: "Intel Xeon E3",
-      ram: "32GB",
-      storage: "2TB HDD",
-      gpu: "Integrated Server Graphics",
-    },
-    price: 8500,
-    image: "/images/Inventory/Lenovo ThinkServer TS140.jpg",
-    status: "Recycled",
-    tags: ["Server", "Enterprise"],
-  },
-  {
-    id: 4,
-    name: "Asus ROG Strix",
-    type: "Desktop",
-    specs: {
-      cpu: "Ryzen 7 3700X",
-      ram: "32GB",
-      storage: "1TB SSD",
-      gpu: "NVIDIA RTX 2070",
-    },
-    price: 11000,
-    image: "/images/Inventory/Asus ROG Strix.jpg",
-    status: "Available",
-    tags: ["Gaming", "Powerful"],
-  },
-];
-
 const Inventory = () => {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState("All");
-  const [theme, setTheme] = useState("light");
   const [search, setSearch] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(true); // Toggle for admin view
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [inventory, setInventory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const toggleTheme = () => {
-    document.body.classList.toggle("dark");
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
+  useEffect(() => {
+    const fetchInventory = async () => {
+      try {
+        const response = await Axios.get("http://localhost:5000/api/products");
+        setInventory(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to load inventory data");
+        setLoading(false);
+      }
+    };
+
+    fetchInventory();
+  }, []);
 
   const handleReserve = (id) => {
     alert(`Computer with ID ${id} reserved!`);
@@ -95,17 +47,35 @@ const Inventory = () => {
     return text.includes(search.toLowerCase());
   };
 
-  const filteredInventory = sampleInventory.filter((item) => {
+  const filteredInventory = inventory.filter((item) => {
     return (filter === "All" || item.type === filter) && matchesSearch(item);
   });
 
+  if (loading) {
+    return <p>Loading inventory...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
-    <div className={`inventory-container ${theme}`}>
+    <div className="inventory-container">
       <header className="inventory-header">
         <h1>IWB Technologies</h1>
         <p>Specialists in Computer Refurbishing & Recycling</p>
-        <button className="theme-toggle" onClick={toggleTheme}>
-          Toggle {theme === "light" ? "Dark" : "Light"} Mode
+        <button
+          className="mode-toggle"
+          onClick={() => {
+            if (!isAdmin) {
+              setIsAdmin(true);
+              navigate("/admin/add-product");
+            } else {
+              setIsAdmin(false);
+            }
+          }}
+        >
+          Switch to {isAdmin ? "User" : "Admin"} Mode
         </button>
       </header>
 
@@ -132,9 +102,9 @@ const Inventory = () => {
 
       <div className="inventory-grid">
         {filteredInventory.map((item) => (
-          <div key={item.id} className="inventory-card">
+          <div key={item._id} className="inventory-card">
             <img
-              src={item.image}
+              src={`http://localhost:5000${item.image}`}
               alt={item.name}
               className="inventory-img"
               onClick={() => setSelectedItem(item)}
@@ -159,8 +129,8 @@ const Inventory = () => {
                 </li>
               </ul>
               <div className="tag-container">
-                {item.tags.map((tag) => (
-                  <span key={tag} className="tag">
+                {item.tags.map((tag, index) => (
+                  <span key={`${tag}-${index}`} className="tag">
                     {tag}
                   </span>
                 ))}
@@ -169,11 +139,11 @@ const Inventory = () => {
                 <span className={`status ${item.status.toLowerCase()}`}>
                   {item.status}
                 </span>
-                <button onClick={() => handleReserve(item.id)}>Reserve</button>
+                <button onClick={() => handleReserve(item._id)}>Reserve</button>
                 {isAdmin && (
                   <>
-                    <button onClick={() => handleEdit(item.id)}>Edit</button>
-                    <button onClick={() => handleDelete(item.id)}>
+                    <button onClick={() => handleEdit(item._id)}>Edit</button>
+                    <button onClick={() => handleDelete(item._id)}>
                       Delete
                     </button>
                   </>
@@ -188,7 +158,10 @@ const Inventory = () => {
         <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h2>{selectedItem.name}</h2>
-            <img src={selectedItem.image} alt={selectedItem.name} />
+            <img
+              src={`http://localhost:5000${selectedItem.image}`}
+              alt={selectedItem.name}
+            />
             <p>
               <strong>CPU:</strong> {selectedItem.specs.cpu}
             </p>
