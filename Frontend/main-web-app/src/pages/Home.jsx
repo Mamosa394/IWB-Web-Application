@@ -1,5 +1,7 @@
 import "../styles/home.css";
 import Header from "../components/Header";
+import { Link } from 'react-router-dom';
+
 
 const HomePage = () => {
   return (
@@ -28,7 +30,7 @@ const HomePage = () => {
 
       <section className="grid-section">
         <div className="grid-card">
-          <div className="image-placeholder">
+          <div className="image-placeholder2">
             <img
               src={"/images/INVENTORY.png"}
               alt="inventory"
@@ -40,6 +42,11 @@ const HomePage = () => {
             />
           </div>
           <h4>Available Inventory</h4>
+          <nav className="nav-center">
+          <div className="inventory-link">
+          <Link to="/inventory">Inventory</Link>
+          </div>
+          </nav>
           <p>Browse our selection of refurbished laptops</p>
         </div>
 
