@@ -1,6 +1,7 @@
 import "../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import "/images/MacBookPro.jpg";
+import "/images/INVENTORY.png";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -20,17 +21,34 @@ const HomePage = () => {
         </nav>
       </header>
 
-      <section className="hero-section">
-        {/* Placeholder for hero image */}
-        <div className="hero-text">
+      <section className="first-section">
+        <div className="open-text">
           <h2>Laptop Refurbishment</h2>
           <p>High-quality refurbished laptops for your needs</p>
           <button className="shop-btn">Shop Now</button>
         </div>
        
-        <div className="hero-img">
+        <div className="first-img">
         <img src={"/images/MacBookPro.jpg"} alt={"laptop"} style={{ maxWidth: " 480px;", maxHeight: "380px", borderRadius: "12px" }} />
           
+        </div>
+      </section>
+
+      
+
+      <section className="grid-section">
+        <div className="grid-card">
+          {/* Placeholder for Available Inventory Image */}
+          <div className="image-placeholder"><img src={"/images/INVENTORY.png"} alt={"inventory"} style={{ maxWidth: " 200px;", maxHeight: "180px", borderRadius: "12px" }} /></div>
+          <h4>Available Inventory</h4>
+          <p>Browse our selection of refurbished laptops</p>
+        </div>
+
+        <div className="grid-card">
+          {/* Placeholder for Recent Articles Image */}
+          <div className="image-placeholder">[Articles Image]</div>
+          <h4>Recent Articles</h4>
+          <p>Read our latest articles and news</p>
         </div>
       </section>
 
@@ -46,22 +64,6 @@ const HomePage = () => {
         <div className="stat-box">
           <h3>1000+</h3>
           <p>Satisfied Customers</p>
-        </div>
-      </section>
-
-      <section className="grid-section">
-        <div className="grid-card">
-          {/* Placeholder for Available Inventory Image */}
-          <div className="image-placeholder">[Inventory Image]</div>
-          <h4>Available Inventory</h4>
-          <p>Browse our selection of refurbished laptops</p>
-        </div>
-
-        <div className="grid-card">
-          {/* Placeholder for Recent Articles Image */}
-          <div className="image-placeholder">[Articles Image]</div>
-          <h4>Recent Articles</h4>
-          <p>Read our latest articles and news</p>
         </div>
       </section>
     </div>

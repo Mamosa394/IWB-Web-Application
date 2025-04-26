@@ -39,13 +39,13 @@
   }
   
   .logo {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: bold;
     color: var(--primary-color);
   }
   
   .nav-links a {
-    margin: 0 1rem;
+    margin: 0 2.1rem;
     color: var(--white);
     text-decoration: none;
     font-weight: 500;
@@ -65,7 +65,7 @@
     background-color: var(--lighter-gray);
   }
   
-  .hero-section {
+  .first-section {
     display: flex;
     justify-content: space-between;
     background-color: var(--panel-dark);
@@ -75,8 +75,8 @@
     box-shadow: 0 4px 12px var(--shadow-color);
   }
   
-  .hero-text h2 {
-    font-size: 2.5rem;
+  .open-text h2 {
+    font-size: 1.8rem;
     color: var(--white);
     align-items: center;
     justify-content: center;
@@ -85,7 +85,7 @@
     margin-top: 130px;
   }
   
-  .hero-text p {
+  .open-text p {
     font-size: 1.1rem;
     color: var(--lighter-gray);
     margin-left: 120px;
@@ -135,7 +135,8 @@
     background-color: var(--panel-dark);
     padding: 1.5rem;
     border-radius: 12px;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
+
   }
   
   .stat-box h3 {
@@ -169,5 +170,19 @@
   .grid-card p {
     color: var(--light-gray);
     margin-top: 0.5rem;
+  }
+  
+  .first-img img {
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.6), 
+      0 6px 20px rgba(0, 0, 0, 0.3);  
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 12px; 
+  }
+  
+  .first-img img:hover {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.7),
+      0 12px 30px rgba(0, 0, 0, 0.4);
   }
   
