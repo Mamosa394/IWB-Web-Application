@@ -1,6 +1,6 @@
 import "../styles/home.css";
-import { useNavigate } from "react-router-dom";
-import "/images/MacBookPro.jpg";
+import { useNavigate, Link } from "react-router-dom";
+import "/images/MacBookPro.png";
 import "/images/INVENTORY.png";
 
 const HomePage = () => {
@@ -11,10 +11,10 @@ const HomePage = () => {
       <header className="header">
         <h1 className="logo">IWB Technologies</h1>
         <nav className="nav-links">
-          <a href="#">Home</a>
-          <a href="#">Inventory</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+          <Link to="/">Home</Link>
+          <Link to="/inventory">Inventory</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
           <button className="login-btn" onClick={() => navigate("/login")}>
             Log in
           </button>
@@ -28,24 +28,21 @@ const HomePage = () => {
           <button className="shop-btn">Shop Now</button>
         </div>
        
-        <div className="hero-img">
-        <img src={"/images/MacBookPro.jpg"} alt={"laptop"} style={{ maxWidth: " 480px;", maxHeight: "380px", borderRadius: "12px" }} />
-          
+        <div className="first-img">
+          <img src={"/images/MacBookPro.png"} alt={"laptop"} style={{ maxWidth: " 480px;", maxHeight: "380px", borderRadius: "12px" }} />
         </div>
       </section>
 
-      
-
       <section className="grid-section">
         <div className="grid-card">
-          {/* Placeholder for Available Inventory Image */}
-          <div className="image-placeholder"><img src={"/images/INVENTORY.png"} alt={"inventory"} style={{ maxWidth: " 200px;", maxHeight: "180px", borderRadius: "12px" }} /></div>
+          <div className="image-placeholder">
+            <img src={"/images/INVENTORY.png"} alt={"inventory"} style={{ maxWidth: " 200px;", maxHeight: "180px", borderRadius: "12px" }} />
+          </div>
           <h4>Available Inventory</h4>
           <p>Browse our selection of refurbished laptops</p>
         </div>
 
         <div className="grid-card">
-          {/* Placeholder for Recent Articles Image */}
           <div className="image-placeholder">[Articles Image]</div>
           <h4>Recent Articles</h4>
           <p>Read our latest articles and news</p>
