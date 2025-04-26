@@ -1,6 +1,7 @@
 import "../styles/home.css";
 import Header from "../components/Header";
 import { Link } from 'react-router-dom';
+import { MdApps } from 'react-icons/md';
 
 
 const HomePage = () => {
@@ -51,9 +52,20 @@ const HomePage = () => {
         </div>
 
         <div className="grid-card">
-          <div className="image-placeholder">[Articles Image]</div>
-          <h4>Recent Articles</h4>
-          <p>Read our latest articles and news</p>
+          <div className="image-placeholder3"><img
+              src={"/store/.jpg"}
+              alt="quick-acess-img"
+              style={{
+                maxWidth: "200px",
+                maxHeight: "180px",
+                borderRadius: "12px",
+              }}
+            /></div>
+          <div className="quick-access-heading">
+  <h4><MdApps style={{ marginRight: '1px',marginTop: '20px' }} />Quick Access</h4>
+  <p>Everything you need, right here</p>
+</div>
+
         </div>
       </section>
 
