@@ -47,7 +47,7 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         setSuccessMessage("Login successful! Redirecting to home...");
         setTimeout(() => {
-          navigate("/home");
+          navigate("/home-page");
         }, 1500);
       } else {
         setError(data.message || "Invalid email or password. Please try again.");
