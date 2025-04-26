@@ -19,7 +19,6 @@
     background-color: var(--dark-bg);
     color: var(--white);
     min-height: 100vh;
-    display: flex;
     flex-direction: column;
     overflow-y: auto;
   }
@@ -28,12 +27,13 @@
     max-width: 1200px;
     margin: auto;
     padding: 2rem;
-    flex-grow: 1; /* Allow the content to grow and push the footer if needed */
+    
   }
   
   .header {
     
     margin-bottom: 2rem;
+    display: flex;
   }
   
   .logo {
@@ -121,8 +121,8 @@
   }
   
   .image-placeholder {
-    width: 280px;
-    height: 180px;
+    width: 400px;
+    height: 200px;
     background-color: var(--input-bg);
     color: var(--light-gray);
     display: flex;
@@ -130,6 +130,9 @@
     justify-content: center;
     border-radius: 12px;
     font-size: 1rem;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.035); 
+    margin-top: 10px;
   }
   
   .stats-section {
@@ -194,6 +197,37 @@
   }
   
   .first-img img:hover {
+    box-shadow: 
+      0 6px 18px rgba(0, 0, 0, 0.5),
+      0 10px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .students-img img{
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.035); /* subtle tint */
+    border-radius: 12px;
+    padding: 0.5rem;
+    opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 1.2s ease-out forwards;
+}
+
+  .second-img img {
+    box-shadow: 
+      0 3px 8px rgba(72, 67, 67, 0.4), 
+      0 5px 16px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease-in-out;
+    border-radius: 12px;
+  }
+  
+  .second-img img:hover {
     box-shadow: 
       0 6px 18px rgba(0, 0, 0, 0.5),
       0 10px 24px rgba(0, 0, 0, 0.3);
