@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/add-product.css";
+import Header from "../components/Header";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -92,6 +93,7 @@ const AddProduct = () => {
 
   return (
     <div className="add-product-container">
+      <Header />
       <div className="header">
         <h1>Add New Product</h1>
       </div>

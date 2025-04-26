@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/inventory.css";
+import Header from "../components/Header";
 
 const Inventory = () => {
   const navigate = useNavigate();
@@ -61,11 +62,10 @@ const Inventory = () => {
 
   return (
     <div className="inventory-container">
+      <Header />
       <header className="inventory-header">
-        <h1>IWB Technologies</h1>
-        <p>Specialists in Computer Refurbishing & Recycling</p>
         <button
-          className="mode-toggle"
+          className="admin-toggle-btn"
           onClick={() => {
             if (!isAdmin) {
               setIsAdmin(true);

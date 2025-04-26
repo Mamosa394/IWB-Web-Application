@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import Home from "./pages/Home";
 import Inventory from "./pages/Inventory";
 import AddProduct from "./pages/AddProduct";
+import IncomeStatement from "./pages/IncomeStatement";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/home-page" element={<Home />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/admin/add-product" element={<AddProduct />} />
+            <Route path="/income-statements" element={<IncomeStatement />} />
           </Routes>
         </main>
       </div>
