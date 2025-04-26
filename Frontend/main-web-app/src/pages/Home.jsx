@@ -1,25 +1,19 @@
 import "../styles/home.css";
-import { useNavigate, Link } from "react-router-dom";
+import Header from "../components/Header";
+
+
 import "/images/MacBookPro.png";
 import "/images/INVENTORY.png";
 
-const HomePage = () => {
-  const navigate = useNavigate();
 
+const HomePage = () => {
   return (
     <div className="home-container">
-      <header className="header">
-        <h1 className="logo">IWB Technologies</h1>
-        <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/inventory">Inventory</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
-          <button className="login-btn" onClick={() => navigate("/login")}>
-            Log in
-          </button>
-        </nav>
-      </header>
+
+      <Header />
+
+      <Header /> 
+
 
       <section className="first-section">
         <div className="open-text">
@@ -27,19 +21,52 @@ const HomePage = () => {
           <p>High-quality refurbished laptops for your needs</p>
           <button className="shop-btn">Shop Now</button>
         </div>
-       
+
         <div className="first-img">
-          <img src={"/images/MacBookPro.png"} alt={"laptop"} style={{ maxWidth: " 480px;", maxHeight: "380px", borderRadius: "12px" }} />
+
+          <img
+            src={"/images/MacBookPro.png"}
+            alt="laptop"
+            style={{
+              maxWidth: "480px",
+              maxHeight: "380px",
+              borderRadius: "12px",
+            }}
+
+          <img 
+            src={"/images/MacBookPro.png"} 
+            alt={"laptop"} 
+            style={{ maxWidth: "480px", maxHeight: "380px", borderRadius: "12px" }} 
+
+          />
         </div>
       </section>
 
       <section className="grid-section">
         <div className="grid-card">
           <div className="image-placeholder">
-            <img src={"/images/INVENTORY.png"} alt={"inventory"} style={{ maxWidth: " 200px;", maxHeight: "180px", borderRadius: "12px" }} />
+
+            <img
+              src={"/images/INVENTORY.png"}
+              alt="inventory"
+              style={{
+                maxWidth: "200px",
+                maxHeight: "180px",
+                borderRadius: "12px",
+              }}
+            />
+
+            <div className="second-image">
+              <img 
+                src={"/images/INVENTORY.png"} 
+                alt={"inventory"} 
+                style={{ maxWidth: "200px", maxHeight: "150px", borderRadius: "12px" }} 
+              />
+            </div>
+            <h4>Available Inventory</h4>
+            <p>Browse our selection of refurbished laptops</p>
+
           </div>
-          <h4>Available Inventory</h4>
-          <p>Browse our selection of refurbished laptops</p>
         </div>
 
         <div className="grid-card">

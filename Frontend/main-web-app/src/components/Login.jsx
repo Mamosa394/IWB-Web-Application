@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Login.css"; 
+import "../styles/Login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -16,11 +16,10 @@ const Login = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formData;
@@ -30,17 +29,20 @@ const Login = () => {
       return;
     }
 
-    setError(""); 
+    setError("");
     setSuccessMessage("");
 
     try {
-      const response = await fetch("https://server-2-43kp.onrender.com/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-      });
+      const response = await fetch(
+        "https://server-2-43kp.onrender.com/api/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await response.json();
 
@@ -49,12 +51,13 @@ const Login = () => {
 
         setSuccessMessage("Login successful! Redirecting to home...");
 
-      
         setTimeout(() => {
           navigate("/home");
         }, 1500);
       } else {
-        setError(data.message || "Invalid email or password. Please try again.");
+        setError(
+          data.message || "Invalid email or password. Please try again."
+        );
       }
     } catch (err) {
       setError("Unable to connect to the server. Please try again.");
@@ -92,13 +95,19 @@ const Login = () => {
           </div>
 
           {error && <p className="error-message">{error}</p>}
-          {successMessage && <p className="success-message">{successMessage}</p>}
+          {successMessage && (
+            <p className="success-message">{successMessage}</p>
+          )}
 
-          <button type="submit" className="submit-button">Login</button>
+          <button type="submit" className="submit-button">
+            Login
+          </button>
         </form>
         <p>
           Don't have an account?{" "}
-          <a href="/signup" className="signup-link">Sign Up</a>
+          <a href="/signup" className="signup-link">
+            Sign Up
+          </a>
         </p>
       </div>
     </div>
