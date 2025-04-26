@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+import robotImage from "/images/ROBOT.png";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,6 @@ const Login = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -48,9 +48,7 @@ const Login = () => {
 
       if (response.ok) {
         localStorage.setItem("token", data.token);
-
         setSuccessMessage("Login successful! Redirecting to home...");
-
         setTimeout(() => {
           navigate("/home");
         }, 1500);
@@ -66,49 +64,87 @@ const Login = () => {
   };
 
   return (
-    <div className="page-with-background">
-      <div className="login-container">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+    <div className="signup-ui-container">
+      {/* Left Panel Container */}
+      <div className="left-panel-container">
+        <div className="left-panel">
+          <div className="robot-container">
+            <img src={robotImage} alt="Robot" className="robot-img" />
+            <p className="knee-caption">
+              YOUR IDEAS START HERE!
+              <br />
+              LOG IN TO MAKE THEM REAL.
+            </p>
           </div>
+        </div>
+      </div>
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+      {/* Right Panel Container */}
+      <div className="right-panel-container">
+        <div className="right-panel">
+          <div className="signup-form-box">
+            <div className="glow-border"></div>
+            <h2>Welcome back</h2>
+            <p className="login-text">
+              Do not have an account? <a href="/signup">Sign Up</a>
+            </p>
+
+            <form onSubmit={handleSubmit}>
+              <div className="input-wrapper">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="input-wrapper">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {error && <p className="error">{error}</p>}
+              {successMessage && (
+                <p className="success-message">{successMessage}</p>
+              )}
+
+              <button type="submit" className="signup-btn">
+                Login
+              </button>
+
+              {/* Classic Sign-In Options */}
+              <div className="classic-login">
+                <p>Or sign in with</p>
+                <div className="icon-row">
+                  <img
+                    src="/images/Google.png"
+                    alt="Google"
+                    className="login-icon"
+                  />
+                  <img
+                    src="/images/Facebook.png"
+                    alt="Facebook"
+                    className="login-icon"
+                  />
+                  <img
+                    src="/images/Github.png"
+                    alt="GitHub"
+                    className="login-icon"
+                  />
+                </div>
+              </div>
+            </form>
           </div>
-
-          {error && <p className="error-message">{error}</p>}
-          {successMessage && (
-            <p className="success-message">{successMessage}</p>
-          )}
-
-          <button type="submit" className="submit-button">
-            Login
-          </button>
-        </form>
-        <p>
-          Don't have an account?{" "}
-          <a href="/signup" className="signup-link">
-            Sign Up
-          </a>
-        </p>
+        </div>
       </div>
     </div>
   );

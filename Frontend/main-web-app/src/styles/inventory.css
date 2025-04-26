@@ -13,12 +13,18 @@
   --max-width: 100%;
 }
 
+/* Light theme default */
 body {
+  background: #f4f4f4;
+  color: #333;
+  font-family: "Segoe UI", sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+  margin: 0;
+}
+
+body.dark {
   background: var(--dark-bg);
   color: var(--white);
-  font-family: "Segoe UI", sans-serif;
-  margin: 0;
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .inventory-container {
@@ -33,21 +39,18 @@ body {
 }
 
 .theme-toggle {
-  background: linear-gradient(145deg, var(--primary-color), var(--hover-color));
+  background: var(--primary-color);
   color: #000;
-  font-weight: bold;
   border: none;
-  padding: 0.6rem 1.3rem;
+  padding: 0.5rem 1rem;
   margin-top: 1rem;
   cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px var(--shadow-color);
+  border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
 .theme-toggle:hover {
   background: var(--hover-color);
-  transform: scale(1.05);
 }
 
 .filter-search-bar {
@@ -104,7 +107,7 @@ body {
 
 .inventory-img {
   width: 100%;
-  height: 280px;
+  height: 220px;
   object-fit: cover;
   cursor: pointer;
 }
@@ -142,7 +145,6 @@ body {
   border-radius: 4px;
   color: #000;
   font-weight: bold;
-  transition: background 0.3s ease;
 }
 
 .card-actions button:hover {
