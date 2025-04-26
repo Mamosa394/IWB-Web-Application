@@ -4,6 +4,7 @@ import axios from "axios";
 import { FaUser, FaEnvelope, FaLock, FaGoogle } from "react-icons/fa";
 import "../styles/SignUp.css";
 import robotImage from "/images/ROBOT.png";
+import logo from "/images/Logo.png"; // <-- no destructuring here
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -54,7 +55,14 @@ const SignUp = () => {
 
       <div className="right-panel">
         <div className="signup-form-box">
+          <div class="glow-border"></div>
+
           <h2>Create an account</h2>
+
+          <div className="logo-wrapper">
+            <img src={logo} alt="logo" className="logo" />
+          </div>
+
           <p className="login-text">
             Already have an account?{" "}
             <span className="login-link" onClick={() => navigate("/login")}>
