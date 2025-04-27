@@ -3,11 +3,15 @@ import Header from "../components/Header";
 import { Link } from 'react-router-dom';
 import { MdApps } from 'react-icons/md';
 
-
 const HomePage = () => {
   return (
     <div className="home-container">
       <Header />
+
+      <div className="intro-text" style={{ textAlign: "center", marginTop: "20px", marginBottom: "40px" }}>
+        <h3>Empowering the Future with Recycled Technology</h3>
+        <p>At IWB, we give new life to old tech — sustainably refurbishing laptops, RAM, hard drives, and more for a better tomorrow.</p>
+      </div>
 
       <section className="first-section">
         <div className="open-text">
@@ -43,18 +47,19 @@ const HomePage = () => {
             />
           </div>
           <div className="inventory-heading">
-          <h4>Available Inventory</h4>
-          <nav className="nav-center">
-          <div className="inventory-link">
-          <Link to="/inventory">Inventory</Link>
-          </div>
-          </nav>
-          <p>Browse our selection of refurbished laptops</p>
+            <h4>Available Inventory</h4>
+            <nav className="nav-center">
+              <div className="inventory-link">
+                <Link to="/inventory">Inventory</Link>
+              </div>
+            </nav>
+            <p>Browse our selection of refurbished laptops</p>
           </div>
         </div>
 
         <div className="grid-card">
-          <div className="image-placeholder2"><img
+          <div className="image-placeholder2">
+            <img
               src={"/images/store.jpg"}
               alt="quick-access-img"
               style={{
@@ -62,12 +67,12 @@ const HomePage = () => {
                 maxHeight: "180px",
                 borderRadius: "12px",
               }}
-            /></div>
+            />
+          </div>
           <div className="quick-access-heading">
-  <h4><MdApps style={{ marginRight: '1px',marginTop: '20px' }} />Quick Access</h4>
-  <p>Everything you need, right here</p>
-</div>
-
+            <h4><MdApps style={{ marginRight: '1px', marginTop: '20px' }} />Quick Access</h4>
+            <p>Everything you need, right here</p>
+          </div>
         </div>
       </section>
 
