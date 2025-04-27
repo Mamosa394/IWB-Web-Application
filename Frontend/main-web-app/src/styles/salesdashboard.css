@@ -1,0 +1,54 @@
+:root {
+    --primary-color: #fbba3f;
+    --hover-color: #ffd873;
+    --dark-bg: #1e1e2f;
+    --panel-dark: #2d2d3d;
+    --form-bg: #29293d;
+    --input-bg: #3a3a4d;
+    --white: #ffffff;
+    --light-gray: #ccc;
+    --lighter-gray: #cedbe9;
+    --error-red: #ff6b6b;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .dashboard-container {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .chart-section {
+    background-color: var(--panel-dark);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .sales-table {
+    background-color: var(--panel-dark);
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .sales-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .sales-table th,
+  .sales-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--input-bg);
+  }
+  
+  .sales-table th {
+    background-color: var(--form-bg);
+  }
+  
+  .sales-table tr:hover {
+    background-color: var(--input-bg);
+  }
+  

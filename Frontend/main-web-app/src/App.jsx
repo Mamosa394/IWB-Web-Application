@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Inventory from "./pages/Inventory";
 import AddProduct from "./pages/AddProduct";
 import IncomeStatement from "./pages/IncomeStatement";
+import SalesDashboard from "./pages/SalesDashboard";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/admin/add-product" element={<AddProduct />} />
             <Route path="/income-statements" element={<IncomeStatement />} />
+            <Route path="/sales-dashboard" element={<SalesDashboard />} />
           </Routes>
         </main>
       </div>

@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import productRoutes from "./routes/productRoutes.js";
+import salesRoute from "./routes/salesRoute.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,6 +28,7 @@ mongoose
 
 // Routes
 app.use("/api/products", productRoutes);
+app.use('/api/sales', salesRoute);
 
 // Start server
 app.listen(PORT, () => {
