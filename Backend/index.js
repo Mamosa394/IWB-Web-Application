@@ -28,7 +28,7 @@ mongoose
 
 // Routes
 app.use("/api/products", productRoutes);
-app.use('/api/sales', salesRoute);
+app.use("/api/sales", salesRoute);
 
 // Start server
 app.listen(PORT, () => {

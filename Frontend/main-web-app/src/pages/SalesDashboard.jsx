@@ -38,7 +38,7 @@ const SalesDashboard = () => {
   useEffect(() => {
     const fetchSalesData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/sales'); // full URL if needed
+        const response = await axios.get("http://localhost:5000/api/sales"); 
         setSalesData(response.data);
         prepareChartData(response.data);
       } catch (error) {
