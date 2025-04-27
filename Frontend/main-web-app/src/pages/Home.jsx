@@ -42,6 +42,7 @@ const HomePage = () => {
               }}
             />
           </div>
+          <div className="inventory-heading">
           <h4>Available Inventory</h4>
           <nav className="nav-center">
           <div className="inventory-link">
@@ -49,12 +50,13 @@ const HomePage = () => {
           </div>
           </nav>
           <p>Browse our selection of refurbished laptops</p>
+          </div>
         </div>
 
         <div className="grid-card">
-          <div className="image-placeholder3"><img
-              src={"/store/.jpg"}
-              alt="quick-acess-img"
+          <div className="image-placeholder2"><img
+              src={"/images/store.jpg"}
+              alt="quick-access-img"
               style={{
                 maxWidth: "200px",
                 maxHeight: "180px",
