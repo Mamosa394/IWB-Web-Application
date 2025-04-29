@@ -5,6 +5,8 @@ import SignUp from "./components/SignUp";
 import Home from "./pages/Home";
 import Inventory from "./pages/Inventory";
 import AddProduct from "./pages/AddProduct";
+import QueryForm from "./pages/QueryForm";
+import QueryList from "./pages/QueryList";
 import IncomeStatement from "./pages/IncomeStatement";
 import SalesDashboard from "./pages/SalesDashboard";
 import HomePage from "./components/Home-page";
@@ -26,6 +28,8 @@ const App = () => {
             <Route path="/sales-dashboard" element={<SalesDashboard />} />
             <Route path="/landing-page" element={<HomePage />} />
             <Route path="/nav" element={<Navbar />} />
+            <Route path="/query-form" element={<QueryForm />} />
+            <Route path="/query-lists" element={<QueryList /> } />
           </Routes>
         </main>
       </div>
