@@ -10,6 +10,7 @@ import SalesDashboard from "./pages/SalesDashboard";
 import HomePage from "./components/Home-page";
 import Navbar from "./components/Nav";
 import Repairs from "./pages/Repairs";
+import About from "./pages/About"
 const App = () => {
   return (
     <Router>
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/landing-page" element={<HomePage />} />
             <Route path="/nav" element={<Navbar />} />
             <Route path="/repairs" element={<Repairs />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
       </div>
