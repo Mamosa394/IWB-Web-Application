@@ -1,7 +1,7 @@
 // queryRoutes.js
 
 import express from 'express';
-import Query from '../models/queryModel.js';
+import Query from '../models/query.js';
 
 const router = express.Router();
 
