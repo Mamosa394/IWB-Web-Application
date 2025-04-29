@@ -10,6 +10,8 @@ import SalesDashboard from "./pages/SalesDashboard";
 import HomePage from "./components/Home-page";
 import Navbar from "./components/Nav";
 import Repairs from "./pages/Repairs";
+import IWBHome from "./components/Home-page";
+import LandingPage from "./components/Home-page";
 const App = () => {
   return (
     <Router>
@@ -25,9 +27,9 @@ const App = () => {
             <Route path="/admin/add-product" element={<AddProduct />} />
             <Route path="/income-statements" element={<IncomeStatement />} />
             <Route path="/sales-dashboard" element={<SalesDashboard />} />
-            <Route path="/landing-page" element={<HomePage />} />
+            <Route path="/landing-page" element={<IWBHome />} />
             <Route path="/nav" element={<Navbar />} />
-            <Route path="/repairs" element={<Repairs />} />
+            <Route path="/repairs" element={<LandingPage />} />
           </Routes>
         </main>
       </div>
