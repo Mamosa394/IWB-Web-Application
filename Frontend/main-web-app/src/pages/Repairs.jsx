@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/repairs.css";
+import Header from "../components/Header";
 
 const Repairs = () => {
   const [repairList] = useState([
@@ -35,6 +36,7 @@ const Repairs = () => {
 
   return (
     <div className="repairs-container">
+      <Header />
       <header className="repairs-header">
         <h1>Repair Services</h1>
         <p>Get your devices fixed with expert care and service.</p>
