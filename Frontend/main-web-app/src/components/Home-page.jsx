@@ -1,164 +1,179 @@
-// HomePage.jsx
 import React from "react";
 import "../styles/Home2.css";
+import Navbar from "./Nav";
 
 const HomePage = () => {
   return (
-    <div className="homepage">
-      <Hero />
-      <About />
-      <Features />
-      <Gallery />
-      <Testimonials />
-      <Contact />
-      <Footer />
+    <div className="iwb-homepage">
+      <Navbar />
+      <IwbAbout />
+      <IwbFeatures />
+      <IwbGallery />
+      <IwbTestimonials />
+      <Founders />
+      <IwbContact />
+      <IwbFooter />
     </div>
   );
 };
 
-const Hero = () => (
-  <section className="hero">
-    <div className="hero-content">
-      <h1>Welcome to FutureTech</h1>
-      <p>Innovating Tomorrow, Today.</p>
-      <a href="#features" className="hero-btn">
-        Explore More
-      </a>
-    </div>
-  </section>
-);
-
-const About = () => (
-  <section className="about" id="about">
-    <div className="about-container">
-      <div className="about-text">
-        <h2>About Us</h2>
+// About Section
+const IwbAbout = () => (
+  <section className="iwb-about-section" id="iwb-about">
+    <div className="iwb-about-container">
+      <div className="iwb-about-text">
+        <h2>About IWB Technologies</h2>
         <p>
-          FutureTech is redefining the boundaries of innovation by integrating
-          the latest technological advancements with everyday solutions. Our
-          mission is to build a smarter, more connected world.
+          Founded in 2024 with a capital of M100,000 <br />
+          IWB Technologies is aLesotho-based company <br />
+          focused on recycling computer parts such as RAM,
+          <br />
+          hard drives, and motherboards.
         </p>
         <p>
-          Join us on this extraordinary journey to transform ideas into
-          revolutionary realities.
+          Co-founded by and later joined by , <br />
+          IWB became a leader in eco-friendly e-waste <br />
+          recycling across Lesotho.
         </p>
       </div>
-      <div className="about-img">
-        <img
-          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
-          alt="About Us"
-        />
+      <div className="iwb-about-img">
+        <img src="/images/logo.jpg" alt="IWB Technologies" />
       </div>
     </div>
   </section>
 );
 
-const Features = () => (
-  <section className="features" id="features">
-    <h2>Our Features</h2>
-    <div className="features-container">
-      <div className="feature-card">
-        <h3>AI Integration</h3>
-        <p>
-          Revolutionizing industries through Artificial Intelligence and machine
-          learning applications.
-        </p>
-      </div>
-      <div className="feature-card">
-        <h3>Blockchain Security</h3>
-        <p>
-          Empowering decentralized systems for ultimate transparency and data
-          protection.
-        </p>
-      </div>
-      <div className="feature-card">
-        <h3>IoT Connectivity</h3>
-        <p>
-          Creating smarter homes, businesses, and cities with seamless IoT
-          solutions.
-        </p>
-      </div>
-      <div className="feature-card">
-        <h3>Cloud Computing</h3>
-        <p>
-          Robust, scalable, and secure cloud services to future-proof your
-          operations.
-        </p>
-      </div>
+// Features Section
+const IwbFeatures = () => (
+  <section className="iwb-features-section" id="iwb-features">
+    <h2>Our Core Services</h2>
+    <div className="iwb-features-container">
+      <FeatureCard
+        title="RAM Recycling"
+        text="Eco-friendly extraction and repurposing of memory modules."
+      />
+      <FeatureCard
+        title="Hard Drive Destruction"
+        text="Secure disposal and data-erased recycling."
+      />
+      <FeatureCard
+        title="Motherboard Recovery"
+        text="Reusing and reselling salvaged motherboard components."
+      />
+      <FeatureCard
+        title="Consulting & Partnerships"
+        text="Helping scale sustainable tech across Africa."
+      />
     </div>
   </section>
 );
 
-const Gallery = () => (
-  <section className="gallery" id="gallery">
-    <h2>Gallery</h2>
-    <div className="gallery-container">
+const FeatureCard = ({ title, text }) => (
+  <div className="iwb-feature-card">
+    <h3>{title}</h3>
+    <p>{text}</p>
+  </div>
+);
+
+// Gallery Section
+const IwbGallery = () => (
+  <section className="iwb-gallery-section" id="iwb-gallery">
+    <h2>Our Work in Action</h2>
+    <div className="iwb-gallery-container">
       <img
         src="https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc"
-        alt="Gallery 1"
+        alt="Recycling Process"
       />
       <img
         src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf5b3"
-        alt="Gallery 2"
+        alt="Tech Lab"
       />
       <img
         src="https://images.unsplash.com/photo-1611429339144-1eaf6e7fe4d4"
-        alt="Gallery 3"
+        alt="Team at Work"
       />
       <img
         src="https://images.unsplash.com/photo-1618005198919-d3d7c8aa9c86"
-        alt="Gallery 4"
+        alt="Recycled Parts"
       />
     </div>
   </section>
 );
 
-const Testimonials = () => (
-  <section className="testimonials" id="testimonials">
-    <h2>What Our Clients Say</h2>
-    <div className="testimonials-container">
-      <div className="testimonial-card">
-        <p>
-          "FutureTech helped us transform our business operations through
-          cutting-edge AI solutions."
-        </p>
-        <h4>- Sarah Lee, CEO</h4>
-      </div>
-      <div className="testimonial-card">
-        <p>"Exceptional innovation and professionalism. Highly recommended!"</p>
-        <h4>- James Miller, CTO</h4>
-      </div>
-      <div className="testimonial-card">
-        <p>
-          "The blockchain integration provided by FutureTech secured our
-          transactions like never before."
-        </p>
-        <h4>- Linda Garcia, CFO</h4>
-      </div>
+// Testimonials Section
+const IwbTestimonials = () => (
+  <section className="iwb-testimonials-section" id="iwb-testimonials">
+    <h2>Voices of IWB</h2>
+    <div className="iwb-testimonials-container">
+      <Testimonial
+        quote="Lesotho now leads in e-waste recycling thanks to IWB."
+        author="Thabo Tlou"
+      />
+      <Testimonial
+        quote="Innovation at IWB is driving change across Southern Africa."
+        author="Mamosa Motsie"
+      />
+      <Testimonial
+        quote="They helped us merge sustainability with technology."
+        author="Keletso Hato"
+      />
+      <Testimonial
+        quote="Proud to be part of this green tech movement."
+        author="Thato Chelane"
+      />
     </div>
   </section>
 );
 
-const Contact = () => (
-  <section className="contact" id="contact">
+const Testimonial = ({ quote, author }) => (
+  <div className="iwb-testimonial-card">
+    <p>"{quote}"</p>
+    <h4>- {author}</h4>
+  </div>
+);
+
+// Founders Section
+const Founders = () => (
+  <section className="founders-section" id="iwb-founders">
+    <h2>Meet the Founders</h2>
+    <div className="founders-container">
+      <FounderCard name="Kenneth" role="Co-founder & CEO" />
+      <FounderCard name="Shadrack" role="Co-founder & CTO" />
+      <FounderCard name="Thabo" role="Co-founder & CMO" />
+      <FounderCard name="Keletso" role="Co-founder & CFO" />
+    </div>
+  </section>
+);
+
+const FounderCard = ({ name, role }) => (
+  <div className="founder-card">
+    <h3>{name}</h3>
+    <p>{role}</p>
+  </div>
+);
+
+// Contact Section
+const IwbContact = () => (
+  <section className="iwb-contact-section" id="iwb-contact">
     <h2>Contact Us</h2>
-    <form className="contact-form">
-      <input type="text" placeholder="Name" required />
-      <input type="email" placeholder="Email" required />
-      <textarea placeholder="Message" required></textarea>
+    <form className="iwb-contact-form">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <textarea placeholder="Your Message" required />
       <button type="submit">Send Message</button>
     </form>
   </section>
 );
 
-const Footer = () => (
-  <footer className="footer">
-    <p>© 2025 FutureTech. All rights reserved.</p>
-    <div className="footer-links">
-      <a href="#about">About</a>
-      <a href="#features">Features</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
+// Footer Section
+const IwbFooter = () => (
+  <footer className="iwb-footer">
+    <p>© 2025 IWB Technologies. All rights reserved.</p>
+    <div className="iwb-footer-links">
+      <a href="#iwb-about">About</a>
+      <a href="#iwb-features">Services</a>
+      <a href="#iwb-gallery">Gallery</a>
+      <a href="#iwb-contact">Contact</a>
     </div>
   </footer>
 );

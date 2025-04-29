@@ -9,6 +9,7 @@ import IncomeStatement from "./pages/IncomeStatement";
 import SalesDashboard from "./pages/SalesDashboard";
 import HomePage from "./components/Home-page";
 import Navbar from "./components/Nav";
+import Repairs from "./pages/Repairs";
 const App = () => {
   return (
     <Router>
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/sales-dashboard" element={<SalesDashboard />} />
             <Route path="/landing-page" element={<HomePage />} />
             <Route path="/nav" element={<Navbar />} />
+            <Route path="/repairs" element={<Repairs />} />
           </Routes>
         </main>
       </div>
