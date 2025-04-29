@@ -1,106 +1,340 @@
-:root {
-    --primary-color: #fbba3f;
-    --hover-color: #ffd873;
-    --dark-bg: #1e1e2f;
-    --panel-dark: #2d2d3d;
-    --form-bg: #29293d;
-    --input-bg: #3a3a4d;
-    --white: #ffffff;
-    --light-gray: #ccc;
-    --lighter-gray: #cedbe9;
-    --error-red: #ff6b6b;
-    --shadow-color: rgba(0, 0, 0, 0.4);
-    --max-width: 100%;
+/* Hero Section */
+.iwb-hero {
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc")
+    center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.iwb-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 30, 47, 0.75);
+}
+
+.iwb-hero-content {
+  z-index: 1;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.iwb-hero-content h1 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  animation: fadeInDown 1s ease;
+}
+
+.iwb-hero-content p {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.iwb-hero-btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: var(--primary-color);
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.iwb-hero-btn:hover {
+  background: var(--hover-color);
+}
+
+/* About Section */
+.iwb-about {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.iwb-about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.iwb-about-text {
+  max-width: 1000px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.iwb-about-text h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.iwb-about-img {
+  max-width: 1000px;
+}
+
+.iwb-about-img img {
+  width: 100%;
+  border-radius: 10px;
+  animation: fadeIn 2s ease;
+}
+
+/* Founder Section: Display Founders in Columns */
+.iwb-founders {
+  padding: 60px 20px;
+}
+
+.iwb-founders h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+}
+
+.iwb-founders-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 30px;
+  margin-top: 20px;
+  justify-items: center;
+}
+
+.iwb-founder-card {
+  background: var(--bg-color);
+  padding: 20px;
+  border-radius: 15px;
+  width: 250px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.iwb-founder-card h3 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+}
+
+.iwb-founder-card p {
+  color: var(--primary-color);
+  margin-top: 5px;
+}
+
+/* Features Section */
+.iwb-features {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.iwb-features h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.iwb-features-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.iwb-feature-card {
+  background: var(--bg-color);
+  padding: 30px;
+  border-radius: 15px;
+  width: 260px;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px var(--shadow-color);
+}
+
+.iwb-feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* Gallery Section */
+.iwb-gallery {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.iwb-gallery h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.iwb-gallery-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Adjust min size */
+  gap: 20px;
+  margin-top: 30px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.iwb-gallery-container img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.iwb-gallery-container img:hover {
+  transform: scale(1.05);
+}
+
+/* Testimonials */
+.iwb-testimonials {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.iwb-testimonials h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.iwb-testimonials-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.iwb-testimonial-card {
+  background: var(--bg-color);
+  padding: 25px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 0 10px var(--shadow-color);
+  text-align: left;
+}
+
+.iwb-testimonial-card h4 {
+  margin-top: 15px;
+  color: var(--primary-color);
+}
+
+/* Contact Section */
+.iwb-contact {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.iwb-contact h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+
+.iwb-contact-form {
+  background: var(--bg-color);
+  padding: 30px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.iwb-contact-form input,
+.iwb-contact-form textarea {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: var(--input-bg-color);
+  color: var(--primary-color);
+}
+
+.iwb-contact-form button {
+  background: var(--primary-color);
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  color: #000;
+  transition: background 0.3s;
+}
+
+.iwb-contact-form button:hover {
+  background: var(--hover-color);
+}
+
+/* Footer */
+.iwb-footer {
+  background: var(--bg-color);
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.iwb-footer-links {
+  margin-top: 10px;
+}
+
+.iwb-footer-links a {
+  margin: 0 10px;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.iwb-footer-links a:hover {
+  color: var(--accent-color);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
   }
-  
-  /* Light theme default */
-  body {
-    background: #f4f4f4;
-    color: #333;
-    font-family: "Segoe UI", sans-serif;
-    transition: background 0.3s ease, color 0.3s ease;
-    margin: 0;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  body.dark {
-    background: var(--dark-bg);
-    color: var(--white);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .repairs-container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
+  to {
+    opacity: 1;
   }
-  
-  .repairs-header {
-    text-align: center;
-    margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .iwb-about-container,
+  .iwb-features-container,
+  .iwb-testimonials-container {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .repair-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-    gap: 2rem;
+
+  .iwb-hero-content h1 {
+    font-size: 2.2rem;
   }
-  
-  .repair-item {
-    background: var(--panel-dark);
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 4px 8px var(--shadow-color);
-    transition: transform 0.3s ease;
+
+  .iwb-hero-content p {
+    font-size: 1.2rem;
   }
-  
-  .repair-item:hover {
-    transform: translateY(-5px);
+
+  .iwb-contact-form {
+    max-width: 100%;
+    padding: 15px;
   }
-  
-  .repair-item h3 {
-    margin: 0 0 0.5rem;
-    color: var(--white);
-  }
-  
-  .repair-item p {
-    margin: 0.5rem 0;
-    color: var(--lighter-gray);
-    font-size: 1rem;
-  }
-  
-  .repair-item .status {
-    padding: 0.3rem 0.6rem;
-    border-radius: 3px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: #fff;
-  }
-  
-  .status.completed {
-    background-color: green;
-  }
-  
-  .status.pending {
-    background-color: var(--error-red);
-  }
-  
-  .repair-item .request-button {
-    background: var(--primary-color);
-    border: none;
-    padding: 0.6rem 1rem;
-    color: #000;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .repair-item .request-button:hover {
-    background: var(--hover-color);
-  }
-  
-  .repairs-footer {
-    text-align: center;
-    margin-top: 2rem;
-    color: var(--light-gray);
-    font-size: 0.85rem;
-  }
-  
+}

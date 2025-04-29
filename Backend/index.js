@@ -20,10 +20,7 @@ const mongoURI =
   "mongodb+srv://tlouthabo07:tlouthabo@employment.sg91j.mongodb.net/TechStore?retryWrites=true&w=majority";
 
 mongoose
-  .connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoURI)
   .then(() => console.log("✅ MongoDB connected to TechStore"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
