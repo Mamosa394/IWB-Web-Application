@@ -1,35 +1,41 @@
 import "../styles/home.css";
+import React from "react";
 import Header from "../components/Header";
-import { Link } from 'react-router-dom';
-import { MdApps } from 'react-icons/md';
+import { Link } from "react-router-dom";
+import { MdApps } from "react-icons/md";
+import homeVideo from "../video/home.mp4";
+import Footer from "../components/Footer";
 
 const HomePage = () => {
   return (
     <div className="home-container">
       <Header />
 
-      <div className="intro-text" style={{ textAlign: "center", marginTop: "20px", marginBottom: "40px" }}>
-        <h3>Empowering the Future with Recycled Technology</h3>
-        <p>At IWB, we give new life to old tech — sustainably refurbishing laptops, RAM, hard drives, and more for a better tomorrow.</p>
-      </div>
-
       <section className="first-section">
         <div className="open-text">
           <h2>Laptop Refurbishment</h2>
           <p>High-quality refurbished laptops for your needs</p>
-          <button className="shop-btn">Shop Now</button>
+          <button className="shop-btn">
+            <Link
+              to="/inventory"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              Shop Now
+            </Link>
+          </button>
         </div>
 
-        <div className="first-img">
-          <img
-            src={"/images/MacBookPro.png"}
-            alt="laptop"
-            style={{
-              maxWidth: "480px",
-              maxHeight: "380px",
-              borderRadius: "12px",
-            }}
-          />
+        <div className="video-container">
+          <video
+            src={homeVideo}
+            className="video"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            Your browser does not support the video tag.
+          </video>
         </div>
       </section>
 
@@ -70,7 +76,10 @@ const HomePage = () => {
             />
           </div>
           <div className="quick-access-heading">
-            <h4><MdApps style={{ marginRight: '1px', marginTop: '20px' }} />Quick Access</h4>
+            <h4>
+              <MdApps style={{ marginRight: "5px", verticalAlign: "middle" }} />
+              Quick Access
+            </h4>
             <p>Everything you need, right here</p>
           </div>
         </div>
@@ -90,6 +99,7 @@ const HomePage = () => {
           <p>Satisfied Customers</p>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

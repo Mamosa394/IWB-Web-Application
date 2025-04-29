@@ -7,7 +7,8 @@ import Inventory from "./pages/Inventory";
 import AddProduct from "./pages/AddProduct";
 import IncomeStatement from "./pages/IncomeStatement";
 import SalesDashboard from "./pages/SalesDashboard";
-
+import HomePage from "./components/Home-page";
+import Navbar from "./components/Nav";
 const App = () => {
   return (
     <Router>
@@ -23,6 +24,8 @@ const App = () => {
             <Route path="/admin/add-product" element={<AddProduct />} />
             <Route path="/income-statements" element={<IncomeStatement />} />
             <Route path="/sales-dashboard" element={<SalesDashboard />} />
+            <Route path="/landing-page" element={<HomePage />} />
+            <Route path="/nav" element={<Navbar />} />
           </Routes>
         </main>
       </div>
