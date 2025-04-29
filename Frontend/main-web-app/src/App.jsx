@@ -11,7 +11,7 @@ import IncomeStatement from "./pages/IncomeStatement";
 import SalesDashboard from "./pages/SalesDashboard";
 import HomePage from "./components/Home-page";
 import Navbar from "./components/Nav";
-import Repairs from "./pages/Repairs";
+
 const App = () => {
   return (
     <Router>
