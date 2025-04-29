@@ -5,6 +5,8 @@ import SignUp from "./components/SignUp";
 import Home from "./pages/Home";
 import Inventory from "./pages/Inventory";
 import AddProduct from "./pages/AddProduct";
+import QueryForm from "./pages/QueryForm";
+import QueryList from "./pages/QueryList";
 import IncomeStatement from "./pages/IncomeStatement";
 import SalesDashboard from "./pages/SalesDashboard";
 import HomePage from "./components/Home-page";
