@@ -14,6 +14,7 @@ import Navbar from "./components/Nav";
 import Repairs from "./pages/Repairs";
 import IWBHome from "./components/Home-page";
 import LandingPage from "./components/Home-page";
+import AdminDashboard from "./components/AdminDashboard";
 const App = () => {
   return (
     <Router>
@@ -32,6 +33,7 @@ const App = () => {
             <Route path="/landing-page" element={<IWBHome />} />
             <Route path="/nav" element={<Navbar />} />
             <Route path="/repairs" element={<LandingPage />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
           </Routes>
         </main>
       </div>
