@@ -3,7 +3,10 @@ import multer from "multer";
 import Product from "../models/Product.js";
 import path from "path";
 
-const router = express.Router();
+const app = express();
+
+// Serve static files from the 'uploads' folder
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Set up Multer storage configuration
 const storage = multer.diskStorage({
@@ -20,7 +23,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // POST new product
-router.post("/", upload.single("image"), async (req, res) => {
+app.post("/api/products", upload.single("image"), async (req, res) => {
   try {
     const { name, type, cpu, ram, storage, gpu, price, status, tags } =
       req.body;
@@ -44,7 +47,7 @@ router.post("/", upload.single("image"), async (req, res) => {
 });
 
 // GET all products
-router.get("/", async (req, res) => {
+app.get("/api/products", async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
@@ -54,7 +57,7 @@ router.get("/", async (req, res) => {
 });
 
 // PUT update product
-router.put("/:id", async (req, res) => {
+app.put("/api/products/:id", async (req, res) => {
   try {
     const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -66,7 +69,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE product
-router.delete("/:id", async (req, res) => {
+app.delete("/api/products/:id", async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
     res.json({ message: "Product deleted" });
@@ -75,4 +78,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-export default router;
+export default app;

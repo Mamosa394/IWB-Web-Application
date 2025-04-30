@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import {
-  FaTachometerAlt,
-  FaUsers,
-  FaBoxOpen,
-  FaFileAlt,
-  FaCog,
-  FaBars,
-} from "react-icons/fa";
 import { motion } from "framer-motion";
+import AdminSidebar from "./AdminSidebar";
 import "../styles/AdminDashboard.css";
+
+import Thabo from "./us/Thabo.jpg";
+import Kay from "./us/Kay.jpg";
+import Mamosa from "./us/Mamosa.jpg";
+import Micasa from "./us/Micasa.jpg";
 
 const AdminDashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -19,36 +17,7 @@ const AdminDashboard = () => {
 
   return (
     <div className={`admin-dashboard ${collapsed ? "collapsed" : ""}`}>
-      <aside className="admin-sidebar">
-        <div className="sidebar-header">
-          <h2>IWB</h2>
-          <FaBars className="toggle-icon" onClick={toggleSidebar} />
-        </div>
-        <nav>
-          <ul>
-            <li>
-              <FaTachometerAlt className="icon" />
-              <span>Dashboard</span>
-            </li>
-            <li>
-              <FaUsers className="icon" />
-              <span>Users</span>
-            </li>
-            <li>
-              <FaBoxOpen className="icon" />
-              <span>Products</span>
-            </li>
-            <li>
-              <FaFileAlt className="icon" />
-              <span>Reports</span>
-            </li>
-            <li>
-              <FaCog className="icon" />
-              <span>Settings</span>
-            </li>
-          </ul>
-        </nav>
-      </aside>
+      <AdminSidebar collapsed={collapsed} toggleSidebar={toggleSidebar} />
 
       <main className="admin-main">
         <header className="admin-header">
@@ -93,24 +62,22 @@ const AdminDashboard = () => {
           <h2>Admins</h2>
           <div className="admin-cards">
             <motion.div className="admin-card" whileHover={{ scale: 1.05 }}>
-              <img src="/images/us/Thabo.jpg" alt="Admin 1" />
+              <img src={Thabo} alt="Thabo Tlou" />
               <h4>Thabo Tlou</h4>
               <p>Founder & CTO</p>
             </motion.div>
             <motion.div className="admin-card" whileHover={{ scale: 1.05 }}>
-              <img src="/admin1.png" alt="Admin 1" />
+              <img src={Micasa} alt="Thato Chelane" />
               <h4>Thato Chelane</h4>
               <p>Founder & CTO</p>
             </motion.div>
-
             <motion.div className="admin-card" whileHover={{ scale: 1.05 }}>
-              <img src="/admin2.png" alt="Admin 2" />
+              <img src={Mamosa} alt="Mamosa Motsie" />
               <h4>Mamosa Motsie</h4>
               <p>Co-Founder & Operations</p>
             </motion.div>
-
             <motion.div className="admin-card" whileHover={{ scale: 1.05 }}>
-              <img src="/us/Kay.jpg" alt="Admin 3" />
+              <img src={Kay} alt="Keletso Hato" />
               <h4>Keletso Hato</h4>
               <p>Head of Security</p>
             </motion.div>

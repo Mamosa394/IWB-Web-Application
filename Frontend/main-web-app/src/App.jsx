@@ -15,6 +15,8 @@ import Repairs from "./pages/Repairs";
 import IWBHome from "./components/Home-page";
 import LandingPage from "./components/Home-page";
 import AdminDashboard from "./components/AdminDashboard";
+import AdminInventory from "./pages/AdminInventory";
+import AdminSettings from "./pages/AdminSettings";
 const App = () => {
   return (
     <Router>
@@ -34,6 +36,9 @@ const App = () => {
             <Route path="/nav" element={<Navbar />} />
             <Route path="/repairs" element={<LandingPage />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/admin-inventory" element={<AdminInventory />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/settings" element={<AdminSettings />} />
           </Routes>
         </main>
       </div>
