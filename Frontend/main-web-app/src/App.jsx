@@ -39,6 +39,8 @@ const App = () => {
             <Route path="/admin-inventory" element={<AdminInventory />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
             <Route path="/settings" element={<AdminSettings />} />
+            <Route path="/query" element={<QueryForm />} />
+            <Route path="/query-list" element={<QueryList />} />
           </Routes>
         </main>
       </div>

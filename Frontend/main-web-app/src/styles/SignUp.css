@@ -36,7 +36,7 @@ html {
 
 .left-panel {
   flex: 1;
-  background-color: var(--panel-dark);
+  background-color: var(--form-bg);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -73,7 +73,7 @@ html {
   background-color: var(--form-bg);
   padding: 3rem 1.5rem;
   border-radius: 20px;
-  box-shadow: 0 0 20px var(--shadow-color);
+
   text-align: center;
   max-height: 90vh;
   overflow-y: auto;
@@ -160,7 +160,24 @@ form input::placeholder {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 0.6s ease-out;
 }
+.right-panel .logo-wrapper {
+  display: flex;
+  justify-content: center; /* Center the logo horizontally */
+  align-items: center; /* Center the logo vertically */
+  position: absolute; /* Position it absolutely to control exact placement */
+  top: 20px; /* Adjust this to position the logo */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust the centering */
+  z-index: 10; /* Ensure it's on top of other content */
+}
 
+.right-panel .logo-wrapper img {
+  /*max-width: 100%;*/
+  max-height: 100px;
+  object-fit: contain;
+  margin-left: 125px;
+  margin-top: -20px;
+}
 .signup-btn:hover {
   background-color: var(--hover-color);
 }
@@ -204,7 +221,7 @@ form input::placeholder {
   color: var(--primary-color);
   position: absolute;
   left: 16px;
-  top: 50%;
+  top: 20%;
   transform: translateY(-50%);
   pointer-events: none;
   margin-left: -10px;

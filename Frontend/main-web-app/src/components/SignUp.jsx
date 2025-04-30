@@ -119,6 +119,18 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </div>
+            {isAdmin && (
+              <div className="input-wrapper">
+                <FaLock className="input-icon" />
+                <input
+                  type="text"
+                  name="adminCode"
+                  placeholder="Enter Admin Code"
+                  value={formData.adminCode}
+                  onChange={handleChange}
+                />
+              </div>
+            )}
 
             <div className="terms">
               <input type="checkbox" required className="tick" id="terms" />
@@ -135,20 +147,6 @@ const SignUp = () => {
               />
               <label htmlFor="adminMode">Register as Admin</label>
             </div>
-
-            {isAdmin && (
-              <div className="input-wrapper">
-                <FaLock className="input-icon" />
-                <input
-                  type="text"
-                  name="adminCode"
-                  placeholder="Enter Admin Code"
-                  value={formData.adminCode}
-                  onChange={handleChange}
-                />
-              </div>
-            )}
-
             {error && <p className="error">{error}</p>}
 
             <button type="submit" className="signup-btn">
