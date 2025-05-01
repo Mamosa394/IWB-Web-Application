@@ -10,6 +10,9 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+// Convert import.meta.url to __dirname
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 // Serve static files from the 'uploads' folder
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
@@ -30,7 +33,8 @@ const upload = multer({ storage });
 // POST new product
 app.post("/api/products", upload.single("image"), async (req, res) => {
   try {
-    const { name, type, cpu, ram, storage, gpu, price, status, tags } = req.body;
+    const { name, type, cpu, ram, storage, gpu, price, status, tags } =
+      req.body;
     const image = req.file ? `/uploads/${req.file.filename}` : null;
 
     const newProduct = new Product({
