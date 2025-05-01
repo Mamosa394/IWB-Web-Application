@@ -1,97 +1,132 @@
-import express from 'express';  
+import express from 'express';
+import Query from "../models/query.js"; 
+import nodemailer from 'nodemailer';
 import fs from 'fs';
 import path from 'path';
-import Query from '../models/query.js';
+
+// Define __dirname for ES Modules
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const router = express.Router();
 
-// Function to check similarity between messages (basic word match with stemming)
-function isSimilar(newMessage, existingMessage) {
-  const newWords = newMessage.toLowerCase().split(/\W+/);
-  const oldWords = existingMessage.toLowerCase().split(/\W+/);
-  const common = newWords.filter(word => oldWords.includes(word));
-  return common.length >= 3; // Threshold of common words
-}
+// 🔍 Function: Compare message similarity
+function findSimilarQuery(newMessage, previousQueries) {
+  let bestMatch = null;
+  let highestScore = 0;
 
-// Function to backup queries to local JSON file
-function backupQuery(query) {
-  const backupPath = path.join('backups', 'queries.json');
-  let backupData = [];
-
-  // Read existing backup
-  if (fs.existsSync(backupPath)) {
-    const fileContent = fs.readFileSync(backupPath, 'utf-8');
-    try {
-      backupData = JSON.parse(fileContent);
-    } catch (err) {
-      console.error('Backup file corrupted, creating new one.');
+  previousQueries.forEach((q) => {
+    const similarity = simpleSimilarity(newMessage, q.message);
+    if (similarity > highestScore && similarity > 0.6) {
+      highestScore = similarity;
+      bestMatch = q;
     }
-  }
+  });
 
-  // Append new query to backup data, ensuring it doesn't overwrite
-  backupData.push(query);
-
-  // Ensure backup folder exists, if not, create it
-  if (!fs.existsSync(path.dirname(backupPath))) {
-    fs.mkdirSync(path.dirname(backupPath), { recursive: true });
-  }
-
-  // Write updated backup
-  fs.writeFileSync(backupPath, JSON.stringify(backupData, null, 2));
+  return bestMatch;
 }
 
-// POST /api/client-queries
+// 🔣 Simple similarity scoring (word-based)
+function simpleSimilarity(str1, str2) {
+  const words1 = new Set(str1.toLowerCase().split(/\s+/));
+  const words2 = new Set(str2.toLowerCase().split(/\s+/));
+  const intersection = new Set([...words1].filter(word => words2.has(word)));
+  return intersection.size / Math.max(words1.size, words2.size);
+}
+
+// 📧 Nodemailer setup
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'your-email@gmail.com',
+    pass: 'your-app-password'
+  }
+});
+
+// ✅ POST: Log a new query
 router.post('/', async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
-    // Find previously completed and auto-responded queries
-    const pastQueries = await Query.find({ status: 'complete', isAutoResponded: true });
+    const allQueries = await Query.find();
+    const similarQuery = findSimilarQuery(message, allQueries);
 
-    let autoReply = '';
-    let isAutoResponded = false;
     let status = 'pending';
+    let autoReplyMessage = '';
 
-    // Check for similarity and generate auto-reply if match is found
-    for (const past of pastQueries) {
-      if (isSimilar(message, past.message)) {
-        autoReply = past.autoReply || `Re: ${past.message}`;
-        isAutoResponded = true;
-        status = 'complete';
-        break;
-      }
+    if (similarQuery) {
+      autoReplyMessage = `Auto-Reply: Based on your query, here's an answer:\n\n"${similarQuery.autoReply || similarQuery.message}"`;
+
+      await transporter.sendMail({
+        from: 'your-email@gmail.com',
+        to: email,
+        subject: 'Your Query Response',
+        text: autoReplyMessage
+      });
+
+      status = 'complete';
+    } else {
+      autoReplyMessage = 'Thank you for your message. Our team will get back to you shortly.';
     }
 
-    // Save the new query to MongoDB
     const newQuery = new Query({
       name,
       email,
       message,
-      autoReply,
-      isAutoResponded,
-      status
+      status,
+      autoReply: autoReplyMessage
     });
 
-    const savedQuery = await newQuery.save();
+    await newQuery.save();
 
-    // Backup the new query to a local file
-    backupQuery(savedQuery);
+    const backupPath = path.join(__dirname, 'backup/queries.json');
+    const queries = await Query.find();
+    fs.writeFileSync(backupPath, JSON.stringify(queries, null, 2));
 
-    res.status(201).json(savedQuery);
+    res.status(200).json({ message: 'Query submitted', status, autoReply: autoReplyMessage });
   } catch (error) {
-    console.error('Error during query submission:', error);
-    res.status(500).json({ error: error.message });
+    console.error('Error submitting query:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
-// GET /api/client-queries
+// ✅ GET: All queries
 router.get('/', async (req, res) => {
   try {
     const queries = await Query.find().sort({ createdAt: -1 });
-    res.json(queries);
+    res.status(200).json(queries);
   } catch (error) {
-    console.error('Error fetching queries:', error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ message: 'Could not fetch queries' });
+  }
+});
+
+// ✅ PUT: Update query status
+router.put('/:id', async (req, res) => {
+  try {
+    const { status } = req.body;
+    const updated = await Query.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+    if (!updated) {
+      return res.status(404).json({ message: 'Query not found' });
+    }
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating query' });
+  }
+});
+
+// ✅ DELETE: Remove query by ID
+router.delete('/:id', async (req, res) => {
+  try {
+    const deleted = await Query.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ message: 'Query not found' });
+    }
+    res.status(200).json({ message: 'Query deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error deleting query' });
   }
 });
 

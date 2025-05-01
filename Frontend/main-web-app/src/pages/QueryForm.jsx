@@ -1,119 +1,162 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import "../styles/query.css";
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const QueryForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [queries, setQueries] = useState([]);
+  const [statusMessage, setStatusMessage] = useState('');
 
-  const [response, setResponse] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [queries, setQueries] = useState([]); // Store queries fetched from the backend
-
-  // Fetch queries on component mount
   useEffect(() => {
-    const fetchQueries = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/api/client-queries');
-        setQueries(res.data); // Update the queries state with data from the backend
-      } catch (err) {
-        setError("Failed to fetch previous queries.");
-        console.error("Fetch error:", err);
-      }
-    };
-
     fetchQueries();
   }, []);
 
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    setError('');
-    setResponse('');
-    setLoading(true);
-
+  const fetchQueries = async () => {
     try {
-      await axios.post('http://localhost:5000/api/client-queries', formData);
-      setResponse("Your query was submitted successfully. We'll get back to you soon.");
-      setFormData({ name: '', email: '', message: '' });
-
-      // Fetch updated queries list after submitting
-      const updatedQueries = await axios.get('http://localhost:5000/api/client-queries');
-      setQueries(updatedQueries.data);
-
+      const res = await fetch('http://localhost:5000/api/client-queries');
+      const data = await res.json();
+      setQueries(data);
     } catch (err) {
-      setError("Failed to submit your query. Please try again later.");
-      console.error('Submission error:', err.message);
-    } finally {
-      setLoading(false);
+      console.error('Error fetching queries:', err);
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatusMessage('Submitting...');
+
+    try {
+      const res = await fetch('http://localhost:5000/api/client-queries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+      setStatusMessage(`Query submitted: Status - ${result.status}`);
+      setFormData({ name: '', email: '', message: '' });
+      fetchQueries();
+    } catch (err) {
+      console.error('Submission error:', err);
+      setStatusMessage('Submission failed.');
+    }
+  };
+
+  const countByStatus = (status) =>
+    queries.filter((query) => query.status === status).length;
+
+  const markAsComplete = async (id) => {
+    try {
+      await fetch(`http://localhost:5000/api/client-queries/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'complete' }),
+      });
+      fetchQueries();
+    } catch (err) {
+      console.error('Error updating status:', err);
+    }
+  };
+
+  const chartData = {
+    labels: ['Pending', 'Complete'],
+    datasets: [
+      {
+        label: 'Number of Queries',
+        data: [countByStatus('pending'), countByStatus('complete')],
+        backgroundColor: ['#fbba3f', '#83C760'],
+      },
+    ],
+  };
+
   return (
-    <div className="query-container">
-      <h2 className="query-title">Submit Your Query</h2>
-      
-      {/* Query Form */}
-      <form className="query-form" onSubmit={handleSubmit}>
+    <div style={{ padding: '2rem', background: '#1e1e2f', color: 'white', fontFamily: 'Arial' }}>
+      <h2 style={{ color: '#fbba3f' }}>Client Query Submission</h2>
+
+      <form onSubmit={handleSubmit} style={{ background: '#29293d', padding: '1rem', marginBottom: '2rem', borderRadius: '8px' }}>
         <input
+          style={{ background: '#3a3a4d', color: 'white', margin: '5px', padding: '10px', border: 'none', borderRadius: '5px' }}
           type="text"
-          name="name"
-          placeholder="Your Name"
-          required
+          placeholder="Name"
           value={formData.name}
-          onChange={handleChange}
-          className="query-input"
+          required
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         />
         <input
+          style={{ background: '#3a3a4d', color: 'white', margin: '5px', padding: '10px', border: 'none', borderRadius: '5px' }}
           type="email"
-          name="email"
-          placeholder="Your Email"
-          required
+          placeholder="Email"
           value={formData.email}
-          onChange={handleChange}
-          className="query-input"
+          required
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
         />
         <textarea
-          name="message"
-          placeholder="Your Message"
-          required
+          style={{ background: '#3a3a4d', color: 'white', margin: '5px', padding: '10px', border: 'none', borderRadius: '5px', width: '100%' }}
+          placeholder="Your message"
           value={formData.message}
-          onChange={handleChange}
-          className="query-textarea"
+          required
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
         />
-        <button type="submit" className="query-button">Submit</button>
+        <button
+          type="submit"
+          style={{ background: '#fbba3f', color: '#1e1e2f', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+        >
+          Submit
+        </button>
+        <p>{statusMessage}</p>
       </form>
 
-      {/* Loading Spinner */}
-      {loading && <div className="loading-spinner">Submitting...</div>}
+      <h3 style={{ color: '#fbba3f' }}>Query Stats</h3>
+      <div style={{ maxWidth: '500px', marginBottom: '2rem' }}>
+        <Bar data={chartData} />
+      </div>
 
-      {/* Response/Feedback Messages */}
-      {response && <p className="query-response"><strong>System:</strong> {response}</p>}
-      {error && <p className="query-error">{error}</p>}
+      <h3 style={{ color: '#fbba3f' }}>All Queries</h3>
+      <div style={{ maxHeight: '300px', overflowY: 'auto', background: '#29293d', borderRadius: '8px', padding: '1rem' }}>
+        <table style={{ width: '100%', color: 'white' }}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Message</th>
+              <th>Auto-Reply</th>
+              <th>Action</th> {/* Added this missing header */}
+            </tr>
+          </thead>
+          <tbody>
+            {queries.map((q) => (
+              <tr key={q._id}>
+                <td>{q.name}</td>
+                <td style={{ color: q.status === 'complete' ? '#83C760' : '#fbba3f' }}>{q.status}</td>
+                <td>{q.message}</td>
+                <td style={{ color: q.status === 'pending' ? '#ccc' : '#4ea217' }}>
+                  {q.autoReply}
+                </td>
 
-      {/* Previous Queries */}
-      <h3>Previous Queries</h3>
-      <ul className="queries-list">
-        {queries.length > 0 ? (
-          queries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(query => (
-            <li key={query._id} className="query-item">
-              <p><strong>{query.name}</strong> ({query.email})</p>
-              <p><strong>Message:</strong> {query.message}</p>
-              {query.autoReply && <p><strong>Auto Reply:</strong> {query.autoReply}</p>}
-              <p><strong>Status:</strong> {query.status}</p>
-            </li>
-          ))
-        ) : (
-          <p>No queries submitted yet.</p>
-        )}
-      </ul>
+                <td>
+                  {q.status === 'pending' && (
+                    <button
+                      onClick={() => markAsComplete(q._id)}
+                      style={{
+                        background: '#83C760',
+                        color: '#1e1e2f',
+                        border: 'none',
+                        padding: '5px 10px',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Mark Complete
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
