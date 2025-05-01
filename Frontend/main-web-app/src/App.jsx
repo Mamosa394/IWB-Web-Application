@@ -9,9 +9,9 @@ import QueryForm from "./pages/QueryForm";
 import QueryList from "./pages/QueryList";
 import IncomeStatement from "./pages/IncomeStatement";
 import SalesDashboard from "./pages/SalesDashboard";
-import HomePage from "./components/Home-page";
+//import HomePage from "./components/Home-page";
 import Navbar from "./components/Nav";
-import Repairs from "./pages/Repairs";
+//import Repairs from "./pages/Repairs";
 import IWBHome from "./components/Home-page";
 import LandingPage from "./components/Home-page";
 import AdminDashboard from "./components/AdminDashboard";
@@ -39,7 +39,7 @@ const App = () => {
             <Route path="/admin-inventory" element={<AdminInventory />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
             <Route path="/settings" element={<AdminSettings />} />
-            <Route path="/query" element={<QueryForm />} />
+            <Route path="/query-form" element={<QueryForm />} />
             <Route path="/query-list" element={<QueryList />} />
           </Routes>
         </main>

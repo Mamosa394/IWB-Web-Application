@@ -1,13 +1,11 @@
-// backend for clients queriesqueryRoutes.js
-
-import express from 'express';
+import express from 'express';  
 import fs from 'fs';
 import path from 'path';
 import Query from '../models/query.js';
 
 const router = express.Router();
 
-// Function to check similarity between messages (basic word match)
+// Function to check similarity between messages (basic word match with stemming)
 function isSimilar(newMessage, existingMessage) {
   const newWords = newMessage.toLowerCase().split(/\W+/);
   const oldWords = existingMessage.toLowerCase().split(/\W+/);
@@ -30,8 +28,13 @@ function backupQuery(query) {
     }
   }
 
-  // Append new query
+  // Append new query to backup data, ensuring it doesn't overwrite
   backupData.push(query);
+
+  // Ensure backup folder exists, if not, create it
+  if (!fs.existsSync(path.dirname(backupPath))) {
+    fs.mkdirSync(path.dirname(backupPath), { recursive: true });
+  }
 
   // Write updated backup
   fs.writeFileSync(backupPath, JSON.stringify(backupData, null, 2));
@@ -59,7 +62,7 @@ router.post('/', async (req, res) => {
       }
     }
 
-    // Save to MongoDB
+    // Save the new query to MongoDB
     const newQuery = new Query({
       name,
       email,
@@ -71,11 +74,12 @@ router.post('/', async (req, res) => {
 
     const savedQuery = await newQuery.save();
 
-    // Backup to local file
+    // Backup the new query to a local file
     backupQuery(savedQuery);
 
     res.status(201).json(savedQuery);
   } catch (error) {
+    console.error('Error during query submission:', error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -86,6 +90,7 @@ router.get('/', async (req, res) => {
     const queries = await Query.find().sort({ createdAt: -1 });
     res.json(queries);
   } catch (error) {
+    console.error('Error fetching queries:', error);
     res.status(500).json({ error: error.message });
   }
 });
