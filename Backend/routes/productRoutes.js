@@ -2,8 +2,12 @@ import express from "express";
 import multer from "multer";
 import Product from "../models/Product.js";
 import path from "path";
+import { fileURLToPath } from "url"; // Import the necessary module
 
 const app = express();
+
+// Convert import.meta.url to __dirname
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Serve static files from the 'uploads' folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

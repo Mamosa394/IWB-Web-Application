@@ -26,6 +26,7 @@ const SignUp = () => {
     e.preventDefault();
     const { username, email, password, adminCode } = formData;
 
+    // Validation
     if (!username || !email || !password) {
       setError("All fields are required.");
       return;
@@ -39,8 +40,9 @@ const SignUp = () => {
     }
 
     try {
+      // POST request to backend
       const response = await axios.post(
-        "https://server-2-43kp.onrender.com/api/signup",
+        "http://localhost:5000/api/signup", // updated to use local server
         {
           username,
           email,
@@ -51,9 +53,10 @@ const SignUp = () => {
       );
 
       if (response.status === 201) {
-        navigate("/login");
+        navigate("/login"); // Redirect to login page after successful signup
       }
     } catch (err) {
+      // Display error if there's an issue with the request
       setError(
         err.response?.data?.message || "An error occurred. Please try again."
       );
@@ -119,6 +122,7 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </div>
+
             {isAdmin && (
               <div className="input-wrapper">
                 <FaLock className="input-icon" />

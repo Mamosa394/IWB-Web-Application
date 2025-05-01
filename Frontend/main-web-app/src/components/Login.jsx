@@ -11,17 +11,14 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false); // Track if the user is an admin
-  const [adminCount, setAdminCount] = useState(0); // Track the number of admin accounts
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [adminCount, setAdminCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch the number of admin accounts from the server
     const fetchAdminCount = async () => {
       try {
-        const response = await fetch(
-          "https://server-2-43kp.onrender.com/api/admin-count"
-        );
+        const response = await fetch("https://your-api-url/api/admin-count");
         const data = await response.json();
         setAdminCount(data.count);
       } catch (err) {
@@ -53,16 +50,13 @@ const Login = () => {
     setSuccessMessage("");
 
     try {
-      const response = await fetch(
-        "https://server-2-43kp.onrender.com/api/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch("https://your-api-url/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await response.json();
 
@@ -70,22 +64,18 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         setSuccessMessage("Login successful! Redirecting to home...");
 
-        // Check if the logged-in user is an admin
         if (data.isAdmin) {
-          setIsAdmin(true); // Set the user as an admin to show the admin code input
+          setIsAdmin(true);
         }
 
         setTimeout(() => {
           navigate("/home-page");
         }, 1500);
       } else {
-        setError(
-          data.message || "Invalid email or password. Please try again."
-        );
+        setError(data.message || "Invalid email or password.");
       }
     } catch (err) {
       setError("Unable to connect to the server. Please try again.");
-      console.error("Login request failed:", err);
     }
   };
 
@@ -97,7 +87,6 @@ const Login = () => {
       return;
     }
 
-    // Allow admin access
     setSuccessMessage("Admin login successful!");
     setTimeout(() => {
       navigate("/admin-dashboard");
@@ -107,7 +96,6 @@ const Login = () => {
   return (
     <div className="login-page-body">
       <div className="login-page-container">
-        {/* Left Panel Container */}
         <div className="login-page-left-panel-container">
           <div className="login-page-left-panel">
             <div className="login-page-robot-container">
@@ -125,7 +113,6 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Right Panel Container */}
         <div className="login-page-right-panel-container">
           <div className="login-page-right-panel">
             <div className="login-page-signup-form-box">
@@ -167,7 +154,6 @@ const Login = () => {
                   Login
                 </button>
 
-                {/* Admin Code Field (Only shows if user is an admin) */}
                 {isAdmin && adminCount < 3 && (
                   <div className="login-page-input-wrapper admin-code">
                     <input
