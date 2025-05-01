@@ -21,9 +21,63 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-.inventory-container {
+/* Layout with Sidebar */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background-color: var(--panel-dark);
+  width: 250px;
+  padding: 1.5rem 1rem;
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.sidebar ul li {
+  margin-bottom: 1rem;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: var(--lighter-gray);
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+.main-content {
+  flex: 1;
   padding: 2rem;
-  max-width: 1200px;
+  background-color: var(--dark-bg);
+}
+
+.inventory-container {
+  max-width: 100%;
   margin: auto;
 }
 
@@ -31,6 +85,7 @@ body {
   text-align: center;
   margin-bottom: 2rem;
 }
+
 .admin-toggle-btn {
   position: fixed;
   bottom: 20px;
@@ -47,6 +102,7 @@ body {
   transition: transform 0.2s ease, background-color 0.3s ease;
   z-index: 1000;
 }
+
 .admin-toggle-btn:hover {
   transform: scale(1.05);
   background-color: var(--primary-color);
@@ -97,7 +153,7 @@ body {
 }
 
 .search-bar {
-  flex: 0 0 250px; /* restricts width more tightly */
+  flex: 0 0 250px;
   max-width: 100%;
   padding: 0.4rem;
   font-size: 0.9rem;

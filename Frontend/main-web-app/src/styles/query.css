@@ -7,93 +7,94 @@
     --input-bg: #3a3a4d;
     --white: #ffffff;
     --light-gray: #ccc;
-    --lighter-gray: #cedbe9;
     --error-red: #ff6b6b;
     --shadow-color: rgba(0, 0, 0, 0.4);
   }
   
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--dark-bg);
+  .query-container {
+    background-color: var(--form-bg);
     color: var(--white);
+    padding: 2rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  h1, h2 {
+  .query-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
     color: var(--primary-color);
-    margin-bottom: 1rem;
   }
   
-  input, textarea {
-    width: 100%;
-    padding: 0.75rem;
+  .query-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .query-input,
+  .query-textarea {
     background-color: var(--input-bg);
+    border: 1px solid var(--light-gray);
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
     color: var(--white);
-    border: 1px solid var(--lighter-gray);
-    border-radius: 5px;
-    margin-bottom: 1rem;
     font-size: 1rem;
+    resize: none;
   }
   
-  input::placeholder, textarea::placeholder {
-    color: var(--light-gray);
+  .query-input:focus,
+  .query-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
   }
   
-  button {
+  .query-button {
     background-color: var(--primary-color);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
     color: var(--dark-bg);
+    border: none;
+    padding: 0.75rem;
+    font-weight: bold;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
-  button:hover {
+  .query-button:hover {
     background-color: var(--hover-color);
   }
   
-  form {
-    background-color: var(--form-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px var(--shadow-color);
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  .query-list {
-    background-color: var(--panel-dark);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .query-item {
-    background-color: var(--form-bg);
+  .query-response {
+    margin-top: 1rem;
     padding: 1rem;
-    border: 1px solid var(--input-bg);
-    border-radius: 6px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 4px var(--shadow-color);
+    background-color: var(--panel-dark);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 5px;
   }
   
-  .status {
+  .query-error {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--error-red);
+    color: var(--dark-bg);
     font-weight: bold;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .loading-spinner {
+    font-size: 16px;
+    color: #ff9800;
+    text-align: center;
+    margin-top: 20px;
   }
   
-  .status.pending {
-    color: var(--primary-color);
-  }
-  
-  .status.complete {
-    color: #83c760;
+  .query-status {
+    font-weight: bold;
+    color: #4caf50;
+    margin-top: 20px;
   }
   

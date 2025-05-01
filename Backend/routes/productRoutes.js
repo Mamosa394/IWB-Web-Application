@@ -2,8 +2,19 @@ import express from "express";
 import multer from "multer";
 import Product from "../models/Product.js";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const router = express.Router();
+// Fix __dirname for ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+
+// Convert import.meta.url to __dirname
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Serve static files from the 'uploads' folder
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // Set up Multer storage configuration
 const storage = multer.diskStorage({
@@ -11,20 +22,20 @@ const storage = multer.diskStorage({
     cb(null, "uploads/"); // Directory to store images
   },
   filename: (req, file, cb) => {
-    const fileExt = path.extname(file.originalname); // Get file extension
+    const fileExt = path.extname(file.originalname);
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "-" + uniqueSuffix + fileExt); // Generate unique file name
+    cb(null, file.fieldname + "-" + uniqueSuffix + fileExt);
   },
 });
 
 const upload = multer({ storage });
 
 // POST new product
-router.post("/", upload.single("image"), async (req, res) => {
+app.post("/api/products", upload.single("image"), async (req, res) => {
   try {
     const { name, type, cpu, ram, storage, gpu, price, status, tags } =
       req.body;
-    const image = req.file ? `/uploads/${req.file.filename}` : null; // Store the image path
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
 
     const newProduct = new Product({
       name,
@@ -44,7 +55,7 @@ router.post("/", upload.single("image"), async (req, res) => {
 });
 
 // GET all products
-router.get("/", async (req, res) => {
+app.get("/api/products", async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
@@ -54,7 +65,7 @@ router.get("/", async (req, res) => {
 });
 
 // PUT update product
-router.put("/:id", async (req, res) => {
+app.put("/api/products/:id", async (req, res) => {
   try {
     const updated = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -66,7 +77,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE product
-router.delete("/:id", async (req, res) => {
+app.delete("/api/products/:id", async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
     res.json({ message: "Product deleted" });
@@ -75,4 +86,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-export default router;
+export default app;
