@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaUser, FaEnvelope, FaLock, FaGoogle } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import "../styles/SignUp.css";
 import robotImage from "/images/ROBOT.png";
 import logo from "/images/logo.jpg";
@@ -11,7 +11,9 @@ const SignUp = () => {
     username: "",
     email: "",
     password: "",
+    adminCode: "",
   });
+  const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -22,18 +24,32 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, email, password } = formData;
+    const { username, email, password, adminCode } = formData;
 
     if (!username || !email || !password) {
       setError("All fields are required.");
       return;
     }
 
+    if (isAdmin) {
+      if (adminCode !== "IWB-ADMIN-2024") {
+        setError("Invalid admin code.");
+        return;
+      }
+    }
+
     try {
       const response = await axios.post(
         "https://server-2-43kp.onrender.com/api/signup",
-        formData
+        {
+          username,
+          email,
+          password,
+          role: isAdmin ? "admin" : "user",
+          adminCode: isAdmin ? adminCode : undefined,
+        }
       );
+
       if (response.status === 201) {
         navigate("/login");
       }
@@ -55,9 +71,9 @@ const SignUp = () => {
 
       <div className="right-panel">
         <div className="signup-form-box">
-          <div class="glow-border"></div>
+          <div className="glow-border"></div>
 
-          <h2>Create an account</h2>
+          <h2>{isAdmin ? "Admin Sign Up" : "Create an account"}</h2>
 
           <div className="logo-wrapper">
             <img src={logo} alt="logo" className="logo" />
@@ -103,27 +119,40 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </div>
+            {isAdmin && (
+              <div className="input-wrapper">
+                <FaLock className="input-icon" />
+                <input
+                  type="text"
+                  name="adminCode"
+                  placeholder="Enter Admin Code"
+                  value={formData.adminCode}
+                  onChange={handleChange}
+                />
+              </div>
+            )}
 
             <div className="terms">
-              <input type="checkbox" required className="tick" />
-              <label>I agree to the Terms & Conditions</label>
+              <input type="checkbox" required className="tick" id="terms" />
+              <label htmlFor="terms">I agree to the Terms & Conditions</label>
             </div>
 
+            <div className="terms">
+              <input
+                type="checkbox"
+                id="adminMode"
+                className="tick"
+                checked={isAdmin}
+                onChange={() => setIsAdmin(!isAdmin)}
+              />
+              <label htmlFor="adminMode">Register as Admin</label>
+            </div>
             {error && <p className="error">{error}</p>}
 
             <button type="submit" className="signup-btn">
-              Create account
+              {isAdmin ? "Register Admin" : "Create account"}
             </button>
           </form>
-
-          <div className="or-divider">OR</div>
-
-          <div className="social-login">
-            <button className="google-login">
-              <FaGoogle className="google-icon" /> Google
-            </button>
-            <button className="apple-login">Apple</button>
-          </div>
         </div>
       </div>
     </div>

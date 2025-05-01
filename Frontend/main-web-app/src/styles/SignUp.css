@@ -1,6 +1,3 @@
-/* ==========================
-   Root variables and reset
-============================= */
 :root {
   --primary-color: #fbba3f;
   --hover-color: #ffd873;
@@ -13,22 +10,20 @@
   --lighter-gray: #cedbe9;
   --error-red: #ff6b6b;
   --shadow-color: rgba(0, 0, 0, 0.4);
-  --max-width: 100%; /* Max width of the form */
+  --max-width: 100%;
 }
 
-/* Base setup */
 body,
 html {
   font-family: "Segoe UI", sans-serif;
   background-color: var(--dark-bg);
   color: var(--white);
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   margin: 0;
 }
 
-/* Sign up container */
 .signup-ui-container {
   display: flex;
   height: 100vh;
@@ -39,15 +34,15 @@ html {
   position: relative;
 }
 
-/* Left Panel */
 .left-panel {
   flex: 1;
-  background-color: var(--panel-dark);
+  background-color: var(--form-bg);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   text-align: center;
+  animation: slideInLeft 1s ease-out;
 }
 
 .robot-wrapper {
@@ -61,7 +56,6 @@ html {
   margin-left: -60px;
 }
 
-/* Right Panel */
 .right-panel {
   flex: 1;
   background-color: #1a1a26;
@@ -70,23 +64,24 @@ html {
   align-items: center;
   padding: 2rem;
   position: relative;
+  animation: slideInRight 1s ease-out;
 }
 
 .signup-form-box {
   width: 100%;
-  max-width: 500px; /* Limit the max width */
+  max-width: 500px;
   background-color: var(--form-bg);
   padding: 3rem 1.5rem;
   border-radius: 20px;
-  box-shadow: 0 0 20px var(--shadow-color);
+
   text-align: center;
-  height: auto;
-  overflow: hidden;
-  height: 80vh;
+  max-height: 90vh;
+  overflow-y: auto;
   position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
 }
 
-/* Heading */
 .signup-form-box h2 {
   color: var(--primary-color);
   margin-bottom: 1rem;
@@ -94,42 +89,45 @@ html {
   margin-top: -20px;
 }
 
-/* Input Fields */
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  gap: 0.4rem;
 }
 
 form input {
   width: 100%;
-  padding: 0.5rem 1rem; /* Reduced padding */
-  margin-bottom: 1rem;
-  padding-right: 60px;
+  padding: 0.8rem 1.5rem;
+  padding-left: 2.6rem;
+  margin-bottom: 0.6rem;
   border: none;
   border-radius: 8px;
   background-color: var(--input-bg);
   color: var(--white);
   font-size: 0.95rem;
-  height: 45px; /* Reduced height to fit the input neatly */
+  height: 45px;
 }
 
 form input::placeholder {
   color: var(--light-gray);
 }
 
-/* Error Message */
 .error {
   color: var(--error-red);
   font-size: 0.9rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: left;
+  padding-left: 0.5rem;
 }
 
-/* Terms Checkbox */
 .terms {
   display: flex;
   align-items: center;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
 }
 
 .terms input {
@@ -137,15 +135,16 @@ form input::placeholder {
   width: 20px;
   height: 20px;
 }
+
 .tick {
   padding: 5px;
 }
+
 .terms label {
   font-size: 0.85rem;
   color: var(--light-gray);
 }
 
-/* Signup Button */
 .signup-btn {
   width: 100%;
   padding: 0.8rem;
@@ -157,98 +156,38 @@ form input::placeholder {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-top: 0.8rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.6s ease-out;
+}
+.right-panel .logo-wrapper {
+  display: flex;
+  justify-content: center; /* Center the logo horizontally */
+  align-items: center; /* Center the logo vertically */
+  position: absolute; /* Position it absolutely to control exact placement */
+  top: 20px; /* Adjust this to position the logo */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust the centering */
+  z-index: 10; /* Ensure it's on top of other content */
 }
 
+.right-panel .logo-wrapper img {
+  /*max-width: 100%;*/
+  max-height: 100px;
+  object-fit: contain;
+  margin-left: 125px;
+  margin-top: -20px;
+}
 .signup-btn:hover {
   background-color: var(--hover-color);
 }
 
-/* Social Login Buttons */
-.social-login {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-login button {
-  flex: 1;
-  padding: 0.7rem;
-  border-radius: 8px;
-  border: 1px solid #444;
-  background-color: var(--panel-dark);
-  color: var(--white);
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.social-login button:hover {
-  background-color: #444;
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-  .signup-ui-container {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .left-panel,
-  .right-panel {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .robot-img {
-    max-height: 220px;
-    margin-bottom: 1.5rem;
-  }
-
-  .signup-form-box {
-    padding: 2rem;
-  }
-}
-/* ==============================
-     Knee Caption (Text Overlay)
-============================== */
-.knee-caption {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  text-align: center;
-  font-weight: bold;
-  margin-top: 1rem;
-  line-height: 1.3;
-  font-family: "Segoe UI", sans-serif;
-}
-
-/* ==============================
-     Google Icon
-============================== */
-.google-icon {
-  font-size: 1.3rem;
-  color: #fff;
-  margin-right: 0.5rem;
-  transition: color 0.3s ease-in-out;
-}
-.logo {
-  position: absolute;
-  top: 25px;
-  left: 400px;
-  height: 50px;
-  width: 50px;
-}
-.google-icon:hover {
-  color: #db4437; /* Google red color */
-}
-
-/* ========.logo
-======================
-     Social Login (Buttons Container)
-============================== */
 .social-login {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .social-login button {
@@ -268,65 +207,57 @@ form input::placeholder {
   color: var(--primary-color);
 }
 
-/* Google Social Button */
 .social-login .google-login {
-  background-color: #db4437; /* Google red */
+  background-color: #db4437;
   color: #fff;
 }
 
 .social-login .google-login:hover {
-  background-color: #c1351d; /* Darker red on hover */
+  background-color: #c1351d;
 }
 
-/* ==============================
-     Input Icon (Inside Input Fields)
-============================== */
 .input-icon {
   font-size: 1.2rem;
   color: var(--primary-color);
   position: absolute;
   left: 16px;
-  top: 35%;
+  top: 20%;
   transform: translateY(-50%);
   pointer-events: none;
-  margin-right: 10px;
   margin-left: -10px;
-  opacity: 1; /* Ensure icon stays visible */
+  opacity: 1;
   animation: fadeInUp 0.8s ease-out;
   animation-delay: 0.3s;
   animation-fill-mode: both;
 }
-.login-link {
-  background-color: var(--primary-color);
-  border-radius: 5px;
-  padding: 0.15rem 0.6rem;
-  box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.14);
-  color: var(--dark-bg);
-  font-weight: bold;
-  text-align: center;
-}
-/* Input Wrapper - Ensuring padding doesn't overlap with the icon */
+
 .input-wrapper {
   position: relative;
+  width: 100%;
 }
 
 .input-wrapper input {
   width: 100%;
   padding: 0.5rem 1rem;
-  padding-left: 2.4rem;
+  padding-left: 2.6rem;
   border-radius: 8px;
   border: none;
   background-color: var(--input-bg);
   color: var(--white);
   font-size: 1rem;
   height: 45px;
-  margin-right: 50px;
-  margin-left: -5px;
+  margin-bottom: 0.8rem;
 }
 
 .input-wrapper input::placeholder {
   color: var(--light-gray);
 }
+
+.input-wrapper.admin-code {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 .knee-caption {
   position: absolute;
   bottom: 10%;
@@ -346,11 +277,27 @@ form input::placeholder {
   max-width: 320px;
   text-align: left;
 }
-/* ================================
-     Animations for Sliding Effect
-================================ */
 
-/* Keyframes */
+.login-link {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  padding: 0.15rem 0.6rem;
+  box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.14);
+  color: var(--dark-bg);
+  font-weight: bold;
+  text-align: center;
+}
+
+.logo {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
+  width: 50px;
+}
+
+/* Animations */
 @keyframes slideInLeft {
   from {
     transform: translateX(-100%);
@@ -384,43 +331,6 @@ form input::placeholder {
   }
 }
 
-/* Apply Animations */
-.left-panel {
-  animation: slideInLeft 1s ease-out;
-}
-
-.right-panel {
-  animation: slideInRight 1s ease-out;
-}
-
-.signup-form-box form input,
-.signup-btn,
-.terms,
-.social-login {
-  animation: fadeInUp 0.8s ease-out;
-  animation-delay: 0.3s;
-  animation-fill-mode: both;
-}
-
-/* Staggering the form inputs slightly for a cooler effect */
-.signup-form-box form input:nth-child(1) {
-  animation-delay: 0.3s;
-}
-.signup-form-box form input:nth-child(2) {
-  animation-delay: 0.4s;
-}
-.signup-form-box form input:nth-child(3) {
-  animation-delay: 0.5s;
-}
-.signup-btn {
-  animation-delay: 0.6s;
-}
-.terms {
-  animation-delay: 0.7s;
-}
-.social-login {
-  animation-delay: 0.8s;
-}
 .glow-border {
   position: absolute;
   top: 0;
@@ -434,62 +344,87 @@ form input::placeholder {
   border-radius: 20px;
 }
 
-/* Snake movement along the box edges */
 @keyframes snakeBorder {
   0% {
     top: 0;
     left: 0;
     width: 0%;
     height: 3px;
-    border-radius: 20px;
   }
   25% {
     width: 100%;
     height: 3px;
     top: 0;
     left: 0;
-    border-radius: 20px;
   }
   26% {
     top: 0;
     left: 100%;
     width: 3px;
     height: 0%;
-    border-radius: 20px;
   }
   50% {
     height: 100%;
     width: 3px;
     top: 0;
     left: 100%;
-    border-radius: 20px;
   }
   51% {
     top: 100%;
     left: 100%;
     width: 0%;
     height: 3px;
-    border-radius: 20px;
   }
   75% {
     width: 100%;
     height: 3px;
     top: 100%;
     left: 0;
-    border-radius: 20px;
   }
   76% {
     top: 100%;
     left: 0;
     width: 3px;
     height: 0%;
-    border-radius: 20px;
   }
   100% {
     height: 100%;
     width: 3px;
     top: 0;
     left: 0;
-    border-radius: 20px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 900px) {
+  .signup-ui-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-panel {
+    display: none;
+  }
+
+  .right-panel {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .robot-img {
+    max-height: 220px;
+    margin-bottom: 1.5rem;
+  }
+
+  .signup-form-box {
+    padding: 2rem 1.5rem;
+    max-height: 100%;
+  }
+
+  .knee-caption {
+    font-size: 1.4rem;
+    padding: 0.8rem 1rem;
+    max-width: 90%;
+    bottom: 15%;
   }
 }
