@@ -11,24 +11,24 @@
   --lighter-gray: #cedbe9;
   --error-red: #ff6b6b;
   --shadow-color: rgba(0, 0, 0, 0.4);
-  
-  --accent-color: #4ECDC4;
-  --highlight-color: #2D9C8F;
-  --complementary-color: #006B6F;
-  --light-blue: #A8D8E5;
-  --light-gray-alt: #F0F4F8;
+
+  --accent-color: #4ecdc4;
+  --highlight-color: #2d9c8f;
+  --complementary-color: #006b6f;
+  --light-blue: #a8d8e5;
+  --light-gray-alt: #f0f4f8;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 body {
   background-color: var(--dark-bg);
- 
+
   line-height: 1.6;
 }
 

@@ -13,6 +13,7 @@ import {
   ArcElement,
 } from "chart.js";
 import axios from "axios";
+import AdminSidebar from "../components/AdminSidebar";
 
 // Initialize Chart.js
 ChartJS.register(
@@ -177,128 +178,135 @@ const IncomeStatement = () => {
     4;
 
   return (
-    <div className="income-statement-container">
-      <h1 className="income-statement-title">
-        Projected Monthly Income Statement
-      </h1>
+    <div className="income-statement-page" style={{ display: "flex" }}>
+      <AdminSidebar />
+      <div className="income-statement-container">
+        <h1 className="income-statement-title">
+          Projected Monthly Income Statement
+        </h1>
 
-      {/* Main Section: User Profile (left) and Income Statement (right) */}
-      <div className="main-section">
-        {/* User Profile Section (Left) */}
-        <div className="user-profile">
-          <h2 className="user-profile-title">User Profile</h2>
-          <div className="user-profile-item">
-            <span className="user-profile-label">Name</span>
-            <input
-              type="text"
-              value={userData.name}
-              onChange={(e) =>
-                setUserData({ ...userData, name: e.target.value })
-              }
-              onBlur={saveUserProfile}
-              className="user-profile-input"
-            />
-          </div>
-          <div className="user-profile-item">
-            <span className="user-profile-label">Email</span>
-            <input
-              type="email"
-              value={userData.email}
-              onChange={(e) =>
-                setUserData({ ...userData, email: e.target.value })
-              }
-              onBlur={saveUserProfile}
-              className="user-profile-input"
-            />
-          </div>
-        </div>
-
-        {/* Income Statement Section (Right) */}
-        <div className="income-input-container">
-          {/* Editable Rows */}
-          <div className="income-statement-item">
-            <span className="income-label">Revenue</span>
-            <input
-              type="number"
-              value={data.revenue}
-              onChange={(e) => handleChange("revenue", e.target.value)}
-              className="income-statement-input"
-            />
-          </div>
-          <div className="income-statement-item">
-            <span className="income-label">Cost of Goods Sold</span>
-            <input
-              type="number"
-              value={data.costOfGoodsSold}
-              onChange={(e) => handleChange("costOfGoodsSold", e.target.value)}
-              className="income-statement-input"
-            />
-          </div>
-          <div className="income-statement-item">
-            <span className="income-label">Operating Expenses</span>
-            <input
-              type="number"
-              value={data.operatingExpenses}
-              onChange={(e) =>
-                handleChange("operatingExpenses", e.target.value)
-              }
-              className="income-statement-input"
-            />
-          </div>
-          <div className="income-statement-item">
-            <span className="income-label">Taxes</span>
-            <input
-              type="number"
-              value={data.taxes}
-              onChange={(e) => handleChange("taxes", e.target.value)}
-              className="income-statement-input"
-            />
-          </div>
-
-          {/* Additional Categories */}
-          {data.additionalCategories.map((category, index) => (
-            <div key={index} className="income-statement-category">
+        {/* Main Section: User Profile (left) and Income Statement (right) */}
+        <div className="main-section">
+          {/* User Profile Section (Left) */}
+          <div className="user-profile">
+            <h2 className="user-profile-title">User Profile</h2>
+            <div className="user-profile-item">
+              <span className="user-profile-label">Name</span>
               <input
                 type="text"
-                value={category.label}
+                value={userData.name}
                 onChange={(e) =>
-                  handleCategoryChange(index, "label", e.target.value)
+                  setUserData({ ...userData, name: e.target.value })
                 }
-                placeholder="Category Name"
-                className="category-input"
+                onBlur={saveUserProfile}
+                className="user-profile-input"
               />
+            </div>
+            <div className="user-profile-item">
+              <span className="user-profile-label">Email</span>
+              <input
+                type="email"
+                value={userData.email}
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
+                onBlur={saveUserProfile}
+                className="user-profile-input"
+              />
+            </div>
+          </div>
+
+          {/* Income Statement Section (Right) */}
+          <div className="income-input-container">
+            {/* Editable Rows */}
+            <div className="income-statement-item">
+              <span className="income-label">Revenue</span>
               <input
                 type="number"
-                value={category.amount}
-                onChange={(e) =>
-                  handleCategoryChange(index, "amount", e.target.value)
-                }
-                placeholder="Amount"
-                className="category-input"
+                value={data.revenue}
+                onChange={(e) => handleChange("revenue", e.target.value)}
+                className="income-statement-input"
               />
-              <button
-                onClick={() => removeCategory(index)}
-                className="remove-category-btn"
-              >
-                Remove
-              </button>
             </div>
-          ))}
-          <button onClick={addCategory} className="add-category-btn">
-            Add Category
-          </button>
-        </div>
-      </div>
+            <div className="income-statement-item">
+              <span className="income-label">Cost of Goods Sold</span>
+              <input
+                type="number"
+                value={data.costOfGoodsSold}
+                onChange={(e) =>
+                  handleChange("costOfGoodsSold", e.target.value)
+                }
+                className="income-statement-input"
+              />
+            </div>
+            <div className="income-statement-item">
+              <span className="income-label">Operating Expenses</span>
+              <input
+                type="number"
+                value={data.operatingExpenses}
+                onChange={(e) =>
+                  handleChange("operatingExpenses", e.target.value)
+                }
+                className="income-statement-input"
+              />
+            </div>
+            <div className="income-statement-item">
+              <span className="income-label">Taxes</span>
+              <input
+                type="number"
+                value={data.taxes}
+                onChange={(e) => handleChange("taxes", e.target.value)}
+                className="income-statement-input"
+              />
+            </div>
 
-      {/* Net Income and Chart Section */}
-      <div className="chart-section">
-        <p className="net-income">Net Income: ${finalNetIncome.toFixed(2)}</p>
-        <div className="chart-container">
-          <div className="chart-item">
-            <Chart type="bar" data={chartData} />
+            {/* Additional Categories */}
+            {data.additionalCategories.map((category, index) => (
+              <div key={index} className="income-statement-category">
+                <input
+                  type="text"
+                  value={category.label}
+                  onChange={(e) =>
+                    handleCategoryChange(index, "label", e.target.value)
+                  }
+                  placeholder="Category Name"
+                  className="category-input"
+                />
+                <input
+                  type="number"
+                  value={category.amount}
+                  onChange={(e) =>
+                    handleCategoryChange(index, "amount", e.target.value)
+                  }
+                  placeholder="Amount"
+                  className="category-input"
+                />
+                <button
+                  onClick={() => removeCategory(index)}
+                  className="remove-category-btn"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <button onClick={addCategory} className="add-category-btn">
+              Add Category
+            </button>
           </div>
-          <div className="chart-item">
-            <Chart type="pie" data={pieChartData} />
+        </div>
+
+        {/* Net Income and Chart Section */}
+        <div className="chart-section">
+          <p className="net-income">
+            Net Income: M {finalNetIncome.toFixed(2)}
+          </p>
+          <div className="chart-container">
+            <div className="chart-item">
+              <Chart type="bar" data={chartData} />
+            </div>
+            <div className="chart-item">
+              <Chart type="pie" data={pieChartData} />
+            </div>
           </div>
         </div>
       </div>

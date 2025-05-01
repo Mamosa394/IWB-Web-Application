@@ -9,9 +9,15 @@ import QueryForm from "./pages/QueryForm";
 import QueryList from "./pages/QueryList";
 import IncomeStatement from "./pages/IncomeStatement";
 import SalesDashboard from "./pages/SalesDashboard";
-import HomePage from "./components/Home-page";
+//import HomePage from "./components/Home-page";
 import Navbar from "./components/Nav";
 import Repairs from "./pages/Repairs";
+import IWBHome from "./components/Home-page";
+import LandingPage from "./components/Home-page";
+import AdminDashboard from "./components/AdminDashboard";
+import AdminInventory from "./pages/AdminInventory";
+import AdminSettings from "./pages/AdminSettings";
+>>>>>>> 121555c79177856b2fd21c22c40aa6bee4b1c01e
 const App = () => {
   return (
     <Router>
@@ -27,11 +33,20 @@ const App = () => {
             <Route path="/admin/add-product" element={<AddProduct />} />
             <Route path="/income-statements" element={<IncomeStatement />} />
             <Route path="/sales-dashboard" element={<SalesDashboard />} />
-            <Route path="/landing-page" element={<HomePage />} />
+            <Route path="/landing-page" element={<IWBHome />} />
             <Route path="/nav" element={<Navbar />} />
+            <Route path="/repairs" element={<LandingPage />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/admin-inventory" element={<AdminInventory />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/settings" element={<AdminSettings />} />
             <Route path="/query-form" element={<QueryForm />} />
+<<<<<<< HEAD
             <Route path="/query-lists" element={<QueryList /> } />
             <Route path="/repairs" element={<Repairs /> } />
+=======
+            <Route path="/query-list" element={<QueryList />} />
+>>>>>>> 121555c79177856b2fd21c22c40aa6bee4b1c01e
           </Routes>
         </main>
       </div>
