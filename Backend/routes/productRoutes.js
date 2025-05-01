@@ -2,7 +2,11 @@ import express from "express";
 import multer from "multer";
 import Product from "../models/Product.js";
 import path from "path";
-import { fileURLToPath } from "url"; // Import the necessary module
+import { fileURLToPath } from "url";
+
+// Fix __dirname for ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -10,7 +14,7 @@ const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Serve static files from the 'uploads' folder
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // Set up Multer storage configuration
 const storage = multer.diskStorage({
@@ -18,9 +22,9 @@ const storage = multer.diskStorage({
     cb(null, "uploads/"); // Directory to store images
   },
   filename: (req, file, cb) => {
-    const fileExt = path.extname(file.originalname); // Get file extension
+    const fileExt = path.extname(file.originalname);
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "-" + uniqueSuffix + fileExt); // Generate unique file name
+    cb(null, file.fieldname + "-" + uniqueSuffix + fileExt);
   },
 });
 
@@ -31,7 +35,7 @@ app.post("/api/products", upload.single("image"), async (req, res) => {
   try {
     const { name, type, cpu, ram, storage, gpu, price, status, tags } =
       req.body;
-    const image = req.file ? `/uploads/${req.file.filename}` : null; // Store the image path
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
 
     const newProduct = new Product({
       name,
