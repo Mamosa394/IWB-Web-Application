@@ -11,12 +11,13 @@ import IncomeStatement from "./pages/IncomeStatement";
 import SalesDashboard from "./pages/SalesDashboard";
 //import HomePage from "./components/Home-page";
 import Navbar from "./components/Nav";
-//import Repairs from "./pages/Repairs";
+import Repairs from "./pages/Repairs";
 import IWBHome from "./components/Home-page";
 import LandingPage from "./components/Home-page";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminInventory from "./pages/AdminInventory";
 import AdminSettings from "./pages/AdminSettings";
+
 const App = () => {
   return (
     <Router>
@@ -34,7 +35,7 @@ const App = () => {
             <Route path="/sales-dashboard" element={<SalesDashboard />} />
             <Route path="/landing-page" element={<IWBHome />} />
             <Route path="/nav" element={<Navbar />} />
-            <Route path="/repairs" element={<LandingPage />} />
+            <Route path="/repairs" element={<Repairs />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/admin-inventory" element={<AdminInventory />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
