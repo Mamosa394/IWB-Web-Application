@@ -4,14 +4,10 @@ import Product from "../models/Product.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Fix __dirname for ES module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-
-// Convert import.meta.url to __dirname
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Serve static files from the 'uploads' folder
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
