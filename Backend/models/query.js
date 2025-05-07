@@ -1,4 +1,4 @@
-// models/queryModel.js (ES module version)
+// models/queryModel.js 
 
 import mongoose from 'mongoose';
 
